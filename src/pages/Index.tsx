@@ -11,6 +11,7 @@ import ExperienceSection from "@/components/ExperienceSection";
 import ContactSection from "@/components/ContactSection";
 import ScrollBackground from "@/components/ScrollBackground";
 import Footer from "@/components/Footer";
+import BackToTop from "@/components/BackToTop";
 
 const Index = () => {
   const [loading, setLoading] = useState(true);
@@ -46,6 +47,7 @@ const Index = () => {
           </div>
         </main>
         <Footer />
+        <BackToTop />
       </div>
     </>
   );
