@@ -41,7 +41,7 @@ const projects = [
     description:
       "Led development of 20+ corporate websites with Webflow and custom code. SEO optimization that made Google actually recommend these sites — not just index them.",
     tech: ["React", "Three.js", "GSAP", "Webflow", "Node.js", "SEO"],
-    url: "https://www.impetusdigital.com",
+    url: "https://www.impetusdigital.io",
     comingSoon: false,
     gradient: "from-violet-500/20 to-purple-600/20",
     accentColor: "text-violet-400",
