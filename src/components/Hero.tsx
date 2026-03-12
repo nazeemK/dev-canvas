@@ -34,9 +34,11 @@ const Hero = () => {
       <div className="relative z-10 text-center max-w-5xl mx-auto">
         <span
           ref={badgeRef}
-          className="inline-block font-mono text-xs uppercase tracking-[0.3em] text-primary border border-primary/30 px-4 py-2 rounded-full mb-8 glow-box"
+          className="inline-flex flex-col sm:flex-row sm:items-center sm:gap-x-2 font-mono text-xs uppercase tracking-[0.3em] text-primary border border-primary/30 px-4 py-2 rounded-full mb-8 glow-box"
         >
-          Full Stack Developer · 10+ Years
+          <span>Full Stack Developer</span>
+          <span className="hidden sm:inline"> · </span>
+          <span>10+ Years</span>
         </span>
 
         <h1 ref={nameRef} className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-bold leading-[0.9] mb-8">
