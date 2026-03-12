@@ -65,8 +65,17 @@
   body {
     @apply bg-background text-foreground;
     font-family: var(--font-sans);
-    cursor: none;
     overflow-x: hidden;
+  }
+
+  /* Hide default cursor only when custom cursor is used (pointer: fine = mouse) */
+  @media (pointer: fine) {
+    body {
+      cursor: none;
+    }
+    *, *::before, *::after {
+      cursor: none !important;
+    }
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -81,11 +90,6 @@
   ::selection {
     background: hsl(var(--primary));
     color: hsl(var(--primary-foreground));
-  }
-
-  /* Hide default cursor globally */
-  *, *::before, *::after {
-    cursor: none !important;
   }
 }
 
