@@ -17,6 +17,14 @@ export default defineConfig(({ command }) => ({
       },
     },
   ].filter(Boolean),
+  server: {
+    host: "::",
+    port: 8080,
+    hmr: {
+      overlay: false,
+    },
+  },
+  resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
