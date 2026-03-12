@@ -2,15 +2,13 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import fs from "fs";
-import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
-export default defineConfig(({ mode }) => ({
-  base: mode === "production" ? "/dev-canvas/" : "/",
+export default defineConfig(({ command }) => ({
+  base: command === "build" ? "/dev-canvas/" : "/",
   plugins: [
     react(),
-    mode === "development" && componentTagger(),
-    mode === "production" && {
+    command === "build" && {
       name: "github-pages",
       closeBundle() {
         const outDir = path.resolve(__dirname, "dist");
@@ -19,14 +17,6 @@ export default defineConfig(({ mode }) => ({
       },
     },
   ].filter(Boolean),
-  server: {
-    host: "::",
-    port: 8080,
-    hmr: {
-      overlay: false,
-    },
-  },
-  resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
