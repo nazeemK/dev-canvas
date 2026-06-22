@@ -4,11 +4,14 @@ import path from "path";
 import fs from "fs";
 
 // https://vitejs.dev/config/
-export default defineConfig(({ command }) => ({
-  base: command === "build" ? "/dev-canvas/" : "/",
+export default defineConfig(({ command, mode }) => {
+  const isGhPages = mode === "gh-pages";
+
+  return {
+  base: isGhPages ? "/dev-canvas/" : "/",
   plugins: [
     react(),
-    command === "build" && {
+    command === "build" && isGhPages && {
       name: "github-pages",
       closeBundle() {
         const outDir = path.resolve(__dirname, "dist");
@@ -32,4 +35,5 @@ export default defineConfig(({ command }) => ({
   optimizeDeps: {
     include: ["gsap", "gsap/ScrollTrigger"],
   },
-}));
+};
+});
