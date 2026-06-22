@@ -1,10 +1,10 @@
 import { useReveal } from "@/hooks/useReveal";
 
 const stats = [
-  { value: "10+", label: "Years shipping code" },
-  { value: "20+", label: "Websites maintained" },
-  { value: "5+", label: "Frameworks mastered" },
-  { value: "∞", label: "Cups of coffee consumed" },
+  { value: "10+", label: "Years in production" },
+  { value: "500%+", label: "Page-load gains delivered" },
+  { value: "50%", label: "Infra costs cut (one project)" },
+  { value: "3", label: "Languages spoken natively" },
 ];
 
 const AboutSection = () => {
@@ -19,20 +19,20 @@ const AboutSection = () => {
             // about.tsx
           </h2>
           <p className="text-2xl md:text-4xl font-bold leading-snug mb-6">
-            I write code that works <span className="text-gradient">on the first deploy</span>
+            I own systems <span className="text-gradient">end to end</span>
             <span className="text-muted-foreground text-lg block mt-2 font-normal font-mono">
-              (okay, maybe the second)
+              (architecture through deployment, not just the fun parts)
             </span>
           </p>
           <p className="text-foreground/60 leading-relaxed mb-6">
-            Full stack developer based in Mauritius with a decade of experience turning business problems 
-            into elegant digital solutions. From legacy system rescues to greenfield e-commerce platforms, 
-            I've seen more codebases than a GitHub bot.
+            Senior full stack developer based in Curepipe, Mauritius — over a decade independently
+            architecting production systems across e-commerce, ERP, real estate, and agency environments.
+            Legacy PHP migrations, headless storefronts, middleware bridges to 30-year-old backends — I've done the hard ones.
           </p>
           <p className="text-foreground/60 leading-relaxed">
-            Fluent in JavaScript, TypeScript, PHP, Python, and sarcasm. When I'm not refactoring someone's 
-            spaghetti code, I'm architecting Docker containers, optimizing database queries, or convincing 
-            clients that "it works on my machine" is not a deployment strategy.
+            Hands-on across Vue/Nuxt, React, Angular, Node, and PHP, with growing depth in AI-driven
+            workflows — LLM integrations, MCP, and prompt engineering included. Drawn to projects that
+            reward ownership and technical depth, not ticket-churn maintenance mode.
           </p>
         </div>
 

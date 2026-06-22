@@ -5,12 +5,12 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 const brands = [
-  { name: "Dragon Electronics", role: "E-Commerce Platform" },
+  { name: "Dragon Electronics", role: "Headless E-Commerce" },
+  { name: "Uniconsults", role: "ERP Platform" },
   { name: "Pam Golding Properties", role: "Real Estate Portal" },
-  { name: "Impetus Digital", role: "Corporate Websites" },
-  { name: "Uniconsults", role: "ERP System" },
+  { name: "Rogers Hospitality", role: "Interactive Experience" },
+  { name: "Porsche", role: "Three.js Experience" },
   { name: "ARM Mauritius", role: "Web Solutions" },
-  { name: "Groupe Dev", role: "Agency Site" },
 ];
 
 const BrandMarquee = () => {

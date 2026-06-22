@@ -12,11 +12,11 @@ const ContactSection = () => {
         <p className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-8">
           Got a project that needs
           <br />
-          <span className="text-gradient glow-text">someone who ships?</span>
+          <span className="text-gradient">someone who ships?</span>
         </p>
         <p className="font-mono text-muted-foreground text-sm max-w-lg mx-auto mb-12">
-          Whether you need a full-stack architect, a frontend wizard, or someone to explain 
-          why your build is failing — I'm your guy.
+          Legacy migration, headless commerce, ERP modules, or LLM integrations — if it needs
+          someone who owns the stack end to end, let's talk.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
@@ -38,8 +38,9 @@ const ContactSection = () => {
 
         <div className="flex justify-center gap-8">
           {[
-            { label: "GitHub", url: "https://github.com/nazeemk" },
+            { label: "GitHub", url: "https://github.com/nazeemK" },
             { label: "LinkedIn", url: "https://linkedin.com/in/nazeemkhodabux" },
+            { label: "Cursor", url: "https://cursor.com/@nazeemk" },
           ].map((link) => (
             <a
               key={link.label}

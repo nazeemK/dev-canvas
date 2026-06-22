@@ -4,11 +4,11 @@ const skillCategories = [
   {
     title: "Frontend",
     skills: [
-      { name: "Vue / Angular", level: 95 },
-      { name: "TypeScript", level: 92 },
+      { name: "Vue.js / Nuxt", level: 95 },
+      { name: "React", level: 90 },
+      { name: "Angular (1 & 16+)", level: 88 },
+      { name: "Tailwind / Bootstrap", level: 95 },
       { name: "GSAP / Three.js", level: 85 },
-      { name: "Tailwind / CSS3 / Sass", level: 95 },
-      { name: "Webflow", level: 88 },
     ],
   },
   {
@@ -16,19 +16,19 @@ const skillCategories = [
     skills: [
       { name: "Node.js / Express", level: 93 },
       { name: "PHP / WordPress", level: 90 },
-      { name: "Python / FastAPI", level: 78 },
+      { name: "Python / FastAPI", level: 80 },
       { name: "GraphQL / REST", level: 92 },
-      { name: "MySQL / MongoDB", level: 88 },
+      { name: "MySQL / MongoDB / Redis", level: 88 },
     ],
   },
   {
-    title: "DevOps",
+    title: "DevOps & AI",
     skills: [
-      { name: "Docker", level: 85 },
-      { name: "CI/CD Pipelines", level: 82 },
-      { name: "AWS / DigitalOcean", level: 80 },
-      { name: "Git", level: 95 },
-      { name: "Performance Optimization", level: 90 },
+      { name: "Docker / CI/CD", level: 88 },
+      { name: "AWS / DigitalOcean / Cloudflare", level: 82 },
+      { name: "Claude / OpenAI APIs", level: 85 },
+      { name: "MCP / A2A / Prompt Engineering", level: 80 },
+      { name: "Git / Playwright", level: 90 },
     ],
   },
 ];
@@ -72,6 +72,9 @@ const SkillsSection = () => {
         </h2>
         <p className="text-3xl md:text-5xl font-bold max-w-2xl">
           Tools I use to turn <span className="text-gradient">coffee into code</span>
+          <span className="text-muted-foreground text-lg block mt-2 font-normal font-mono">
+            (and increasingly, prompts into production)
+          </span>
         </p>
       </div>
 

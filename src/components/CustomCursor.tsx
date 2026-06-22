@@ -20,18 +20,20 @@ const CustomCursor = () => {
     const follower = followerRef.current;
     if (!cursor || !follower) return;
 
+    gsap.set([cursor, follower], { xPercent: -50, yPercent: -50 });
+
     const moveCursor = (e: MouseEvent) => {
       gsap.to(cursor, { x: e.clientX, y: e.clientY, duration: 0.1, ease: "power2.out" });
       gsap.to(follower, { x: e.clientX, y: e.clientY, duration: 0.4, ease: "power2.out" });
     };
 
     const handleMouseEnter = () => {
-      gsap.to(follower, { scale: 2.5, opacity: 0.3, duration: 0.3 });
-      gsap.to(cursor, { scale: 0.5, duration: 0.3 });
+      gsap.to(follower, { scale: 2, opacity: 0.85, duration: 0.3 });
+      gsap.to(cursor, { scale: 1.4, duration: 0.3 });
     };
 
     const handleMouseLeave = () => {
-      gsap.to(follower, { scale: 1, opacity: 0.6, duration: 0.3 });
+      gsap.to(follower, { scale: 1, opacity: 0.75, duration: 0.3 });
       gsap.to(cursor, { scale: 1, duration: 0.3 });
     };
 
@@ -58,13 +60,11 @@ const CustomCursor = () => {
     <>
       <div
         ref={cursorRef}
-        className="fixed top-0 left-0 w-3 h-3 rounded-full bg-primary pointer-events-none z-[9999]"
-        style={{ transform: "translate(-50%, -50%)" }}
+        className="fixed top-0 left-0 w-4 h-4 rounded-full bg-primary pointer-events-none z-[9999] shadow-[0_0_12px_hsl(var(--primary)/0.9),0_0_24px_hsl(var(--primary)/0.5)]"
       />
       <div
         ref={followerRef}
-        className="fixed top-0 left-0 w-10 h-10 rounded-full border border-primary pointer-events-none z-[9998] opacity-60"
-        style={{ transform: "translate(-50%, -50%)" }}
+        className="fixed top-0 left-0 w-12 h-12 rounded-full border-2 border-primary/80 bg-primary/10 pointer-events-none z-[9998] opacity-75 shadow-[0_0_20px_hsl(var(--primary)/0.25)]"
       />
     </>
   );

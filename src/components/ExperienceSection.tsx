@@ -6,40 +6,45 @@ const experiences = [
     company: "Dragon Electronics Ltd",
     period: "Jun 2025 – Present",
     location: "Port-Louis, Mauritius",
-    description: "Spearheaded a scalable e-commerce platform with Vue.js/Nuxt, WooCommerce, and custom GraphQL/REST APIs. Containerized everything in Docker because real devs don't say 'it works on my machine'.",
-    tech: ["Vue.js", "Nuxt", "Node.js", "GraphQL", "Docker", "WooCommerce"],
+    description:
+      "Led the full migration of an 8-year-old legacy PHP e-commerce stack to a headless Vue/Nuxt architecture in under a year — GraphQL schema design, payment gateway integrations, and a custom 16KB search index that returns results in microseconds. Cut bounce rate from 40–50% to industry benchmark and slashed VPS costs by ~50% with CI/CD and a lightweight WooCommerce core. Built zero-downtime dual-server failover with automated replication — because downtime is not a deployment strategy.",
+    tech: ["Nuxt 3", "Vue 3", "GraphQL", "WooCommerce", "MySQL", "Nitro", "Node.js", "Tailwind", "CI/CD"],
   },
   {
     role: "Full Stack Developer",
     company: "Uniconsults Ltd",
     period: "Sep 2024 – Jun 2025",
     location: "Curepipe, Mauritius",
-    description: "Built a large-scale modular ERP system handling HR, accounting, and payroll. Optimized SQL schemas so well the database sends thank-you notes.",
-    tech: ["Angular", "Node.js", "Express", "MySQL", "Docker"],
+    description:
+      "Onboarded into a large-scale modular ERP (HR, payroll, accounting, reporting) and reached active feature contribution in 6 weeks — 3 weeks ahead of the standard ramp. Owned Leave Management, Payroll, and HR modules across a tightly interconnected multi-repo system. Wrote unit tests, improved CI/CD pipelines, and delivered weekly knowledge-sharing sessions to the broader dev team.",
+    tech: ["Angular.js", "Node.js", "Express", "PHP", "MySQL", "Sequelize", "Docker", "REST APIs", "CI/CD"],
   },
   {
     role: "Full Stack Developer",
     company: "Impetus Digital Ltd",
     period: "May 2022 – May 2024",
     location: "London, UK (Remote)",
-    description: "Led development of corporate websites using Webflow and modern web tech. Managed SEO for 20+ sites — Google's algorithm and I are on a first-name basis.",
-    tech: ["React", "Three.js", "GSAP", "Node.js", "Webflow"],
+    description:
+      "Technical lead across all client projects — selecting frameworks, delivering Three.js and GSAP interactive experiences for Porsche, Mont Choisy Le Parc, Rogers Hospitality, and DEV Groupe. Built automated health checks and performance optimisations across agency hosting infrastructure. Operated hybrid dev/account management, attending client meetings and owning delivery end-to-end.",
+    tech: ["React", "Node.js", "PHP", "MySQL", "Three.js", "GSAP", "Bootstrap", "Git", "Zapier"],
   },
   {
     role: "Full Stack Developer",
-    company: "Pam Golding Properties",
+    company: "Pam Golding Properties Ltd",
     period: "Mar 2020 – Mar 2022",
-    location: "Mauritius",
-    description: "Built custom middleware bridging a legacy real estate system with a modern web frontend. Implemented multi-currency price sync because luxury properties don't price themselves.",
-    tech: ["PHP", "MySQL", "REST APIs", "PWA", "jQuery"],
+    location: "Pointe aux Cannoniers, Mauritius",
+    description:
+      "Architected middleware APIs bridging a 30-year-old legacy real estate system to a modern web frontend — live data access without touching the core. Built multi-currency daily price sync, query caching, and automated image compression from scratch. Designed the entire system architecture with no existing precedent.",
+    tech: ["PHP", "MySQL", "Bootstrap", "jQuery", "PWA", "API Services", "Zapier", "GA", "GSC"],
   },
   {
     role: "Full Stack Developer",
     company: "ARM Mauritius Ltd",
     period: "Mar 2017 – Jan 2020",
     location: "Albion, Mauritius",
-    description: "Custom WordPress and PHP builds for real estate and e-commerce. Where the journey started — and yes, I survived jQuery.",
-    tech: ["WordPress", "PHP", "MySQL", "jQuery"],
+    description:
+      "Built full-stack real estate and e-commerce platforms from the ground up. Managed servers, DNS, Cloudflare, email systems, and deployments. Integrated third-party APIs, provided technical training for internal teams, and kept production systems alive — the origin story, and yes, I survived jQuery.",
+    tech: ["WordPress", "PHP", "MySQL", "Apache", "Linux", "jQuery", "APIs", "CRON"],
   },
 ];
 
