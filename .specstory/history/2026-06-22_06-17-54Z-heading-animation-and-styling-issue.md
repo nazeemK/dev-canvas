@@ -3992,4 +3992,249 @@ Actually, there's a simpler single-layer approach using animated background-posi
 
 But background-position animations can feel janky in the browser, so I'm going to stick with the two-layer clip-path approach instead—it gives a much cleaner reveal effect. I'll build a reusable React component that wraps the text in two spans, one for the dim version and one for the bright version, then use clip-path to animate which layer is visible.
 
-Writing component structure... The Hero section needs different handling since it uses GSAP timeline animations rather than the IntersectionObserver reveal class system. I should trigger the clip-path animation after the GSAP timeline completes, or animate the clip-path directly with GSAP. The text slides up and fades in via the timeline, and once it's revealed, the gradient should be fully visible—but I need to figure out how opacity interacts with the background-clip text effect on the parent span.</details></think>
+Writing component structure... The Hero section needs different handling since it uses GSAP timeline animations rather than the IntersectionObserver reveal class system. I should trigger the clip-path animation after the GSAP timeline completes, or animate the clip-path directly with GSAP. The text slides up and fades in via the timeline, and once it's revealed, the gradient should be fully visible—but I need to figure out how opacity interacts with the background-clip text effect on the parent span. est it—for the Hero section, I'll wrap the KHODABUX gradient span so the opacity animation applies to the wrapper instead, keeping the inner gradient text untouched. Then I can layer a clip-path reveal on top after the slide-up completes. For consistency across other sections, I'll use the same `useReveal` pattern with clip-path sweeps for any gradient text. Setting up the Hero component refs... I need to verify that applying opacity to a parent element won't trigger Chrome's rendering bug with `background-clip: text` children. Since the opacity is on the ancestor rather than directly on the gradient element itself, this should work fine—the child still renders properly even though it's in a compositing context.
+
+Looking back at the original code, the About and Contact sections should have worked because they only fade in the parent div, leaving the gradient text untouched. The real issue was in the Hero section where GSAP was animating opacity directly on the gradient spans themselves.
+
+So the solution is to either wrap the gradient text in an extra container for the Hero animation, or find an alternative way to animate it without touching opacity. For the glow effect, I need to move away from `text-shadow` since that doesn't render on `background-clip: text` elements in Chrome.
+
+I'm thinking of a "sweep reveal" approach instead — start with dim text, then animate a bright gradient layer sweeping from left to right across it using `clip-path`. This gives that Webflow-like reveal effect without fighting Chrome's rendering limitations.
+
+Building the sweep component... Still writing styles...
+
+For the Hero section, I'll trigger the sweep animation after the GSAP slide-up completes by adding the `revealed` class, while other sections will use the existing IntersectionObserver to cascade the effect. I'm also planning to add a subtle glow effect to enhance the visual impact. Considering a simpler approach using background-position animation instead—a single element with a gradient that shifts across the text, avoiding the need to duplicate content.
+
+Writing gradient animation... Writing GSAP animation... Adding glow transitions... I need to separate the animation logic between the two text elements — NAZEEM will handle both the y-axis movement and opacity changes, while KHODABUX focuses on the y-axis with GSAP managing the background position sweep. For the Contact and About sections, I'll keep the `useReveal` hook working as before, where the parent's `.revealed` class cascades down to trigger the gradient sweep on `.text-gradient`. Since the glow effect is now built into the pseudo-element, I can remove the `.glow-text` class entirely — it was only applied to those two gradient text spans anyway.
+
+Looking at all the other `.text-gradient` elements across the site, they don't currently have the glow class, but adding a subtle glow to all of them makes sense for a dark-themed portfolio. The sweep animation should apply universally to every gradient text element, so I'll integrate the glow as a standard part of the gradient styling rather than keeping it as an optional class. Setting up the gradient defaults...
+
+Actually, I'm realizing this approach gets messy with specificity. Most `.text-gradient` elements live inside reveal containers anyway, so I should just make them start dim by default and sweep bright when revealed. The Hero section is the only outlier, and I can handle that separately with GSAP.
+
+The timing needs careful consideration though—when the reveal parent fades in from opacity 0, the gradient text becomes visible, but the sweep animation should coordinate with that fade-in rather than starting independently. Still writing styles...
+
+I'm realizing there's a positioning issue with the `::after` pseudo-element when applied to an inline span — the absolute positioning will be relative to the span's box rather than the full text container, which could cause the glow to not display as intended.
+
+I'll simplify this by dropping the glow effect for now and focusing on the sweep animation itself, which is the core visual. I can always add the glow back later if needed.
+
+I also need to clean up the HTML by removing the unused `.glow-text` class since the sweep animation is now built directly into `.text-gradient`.
+
+For the Hero section, I need to refactor how GSAP handles the text animations — currently it's applying the same opacity and y-transform to both NAZEEM and KHODABUX, but I should split them into separate refs so I can animate each one independently.
+
+Setting up the Hero component with individual refs for each text element and the CTA button... Finishing the animation timeline and then rendering the component with the animated text spans. I'm realizing that KHODABUX starts fully visible but very dim due to its background gradient position, then slides up while the gradient sweeps across to brighten it, creating a unified reveal effect alongside the other elements. GSAP's `from()` with its default `immediateRender: true` should handle the initial positioning correctly, placing the element at y:120 before any animation starts. Since the parent section has `overflow: hidden`, the offset text would be clipped below the fold anyway, so there shouldn't be a visible flash. Let me verify the spacing works with the hero section dimensions.
+
+The effect I'm going for is having KHODABUX start visible but dim at that offset position, then slide upward while the bright sweep passes through it — creating an emergence effect as the text lights up. For the glow, I'll keep it simple and avoid interfering with the background-clip text effect by using a pseudo-element approach.
+
+Adding glow styling... I'm working through how the background positioning actually works with the 250% size—at 100% position the element shows the dim portion, and at 0% it shows the bright portion, so the sweep moves from dim to bright across the element as the animation progresses. So the gradient sweeps from right to left as the background position animates, making the bright colors appear to slide in from the left side. I should verify that `background-position` transitions work smoothly on text clipping elements without any rendering issues.
+
+Now I'm finalizing the implementation plan: updating the gradient CSS with the sweep animation, removing the old glow effect entirely, refactoring the Hero component to use GSAP for the background position while keeping the vertical movement separate, and ensuring the Contact and About sections trigger the sweep automatically through their existing reveal system. I also need to make sure the text gradient inherits the reveal delay timing so everything animates in sync.
+
+Adding transition delays... The animation should handle both block and inline display modes without issues. Let me start implementing this and verify that all the other sections are using the reveal system consistently.</details></think>
+
+_**Agent (claude-opus-4-6)**_
+
+Let me look at how the other sections handle their gradient text, then implement a completely fresh approach.
+
+_**Agent (claude-opus-4-6)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
+<details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "outputMode": "content",
+  "path": "c:\\Users\\NAZEEM\\Documents\\Projects\\KN\\dev-canvas\\src\\components",
+  "pattern": "text-gradient|useReveal|reveal"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "path": "c:\\Users\\NAZEEM\\Documents\\Projects\\KN\\dev-canvas\\src\\components",
+  "pattern": "text-gradient|useReveal|reveal",
+  "topFiles": [
+    {
+      "matchCount": 8,
+      "uri": "src\\components\\AboutSection.tsx"
+    },
+    {
+      "matchCount": 4,
+      "uri": "src\\components\\ContactSection.tsx"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src\\components\\Hero.tsx"
+    },
+    {
+      "matchCount": 7,
+      "uri": "src\\components\\ProjectsSection.tsx"
+    },
+    {
+      "matchCount": 7,
+      "uri": "src\\components\\SkillsSection.tsx"
+    },
+    {
+      "matchCount": 7,
+      "uri": "src\\components\\ExperienceSection.tsx"
+    }
+  ],
+  "totalFiles": 6,
+  "totalMatches": 34
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-opus-4-6)**_
+
+Every `.text-gradient` element is inside a `.reveal` or `.reveal-item` parent. Now I have the full picture. Here's the plan:
+
+**New approach: CSS `background-position` sweep.** No `opacity`, `filter`, or `text-shadow` on gradient text at all. Just animate the gradient sliding left-to-right. Works in every browser.
+
+_**Agent (claude-opus-4-6)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: c:\Users\NAZEEM\Documents\Projects\KN\dev-canvas\src\index.css</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-opus-4-6)**_
+
+Now update Hero — separate NAZEEM/KHODABUX refs, no `opacity` on gradient text, GSAP drives the sweep:
+
+_**Agent (claude-opus-4-6)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: c:\Users\NAZEEM\Documents\Projects\KN\dev-canvas\src\components\Hero.tsx</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-opus-4-6)**_
+
+Remove `glow-text` class from Contact (no longer exists in CSS):
+
+_**Agent (claude-opus-4-6)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: c:\Users\NAZEEM\Documents\Projects\KN\dev-canvas\src\components\ContactSection.tsx</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-opus-4-6)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="read_lints">
+<details>
+<summary>Tool use: **read_lints**</summary>
+
+
+Parameters:
+
+```json
+{
+  "paths": [
+    "c:\\Users\\NAZEEM\\Documents\\Projects\\KN\\dev-canvas\\src\\components\\Hero.tsx",
+    "c:\\Users\\NAZEEM\\Documents\\Projects\\KN\\dev-canvas\\src\\components\\ContactSection.tsx",
+    "c:\\Users\\NAZEEM\\Documents\\Projects\\KN\\dev-canvas\\src\\index.css"
+  ]
+}
+```
+Result:
+
+```json
+{
+  "linterErrorsByFile": [
+    {
+      "relativeWorkspacePath": "c:\\Users\\NAZEEM\\Documents\\Projects\\KN\\dev-canvas\\src\\components\\Hero.tsx"
+    },
+    {
+      "relativeWorkspacePath": "c:\\Users\\NAZEEM\\Documents\\Projects\\KN\\dev-canvas\\src\\components\\ContactSection.tsx"
+    },
+    {
+      "relativeWorkspacePath": "c:\\Users\\NAZEEM\\Documents\\Projects\\KN\\dev-canvas\\src\\index.css"
+    }
+  ]
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="read_lints"><details>
+<summary>Tool use: **read_lints**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-opus-4-6)**_
+
+Let me verify the final CSS looks right:
+
+_**Agent (claude-opus-4-6)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: c:\Users\NAZEEM\Documents\Projects\KN\dev-canvas\src\index.css</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-opus-4-6)**_
+
+Completely different approach now. Here's what changed:
+
+**How it works:**
+- `.text-gradient` starts with `background-position: 100%` — showing the dim/faded end of the gradient (12% opacity lime)
+- When the parent gets `.revealed` (via `useReveal` IntersectionObserver), it transitions to `background-position: 0%` — sweeping the bright gradient in from left to right over 1.2s
+- Stat cards with stagger delays inherit the delay via `.reveal-item .text-gradient`
+- **Hero KHODABUX**: GSAP animates `backgroundPosition` directly (slides up while sweeping bright — no `opacity` on the gradient element at all)
+
+**Why this works in Chrome:**
+- Zero use of `opacity`, `filter`, or `text-shadow` on any `background-clip: text` element
+- Only animates `background-position`, which Chrome handles perfectly
+- Removed `.glow-text` entirely — no more cross-browser conflicts
+
+Hard-refresh Chrome (`Ctrl+Shift+R`) and test.
