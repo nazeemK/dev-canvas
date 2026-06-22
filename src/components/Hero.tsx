@@ -1,29 +1,46 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import ThreeScene from "./ThreeScene";
+import GradientText from "./GradientText";
 
-const Hero = () => {
+interface HeroProps {
+  ready?: boolean;
+}
+
+const Hero = ({ ready = true }: HeroProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const nazeemRef = useRef<HTMLSpanElement>(null);
   const khodabuxRef = useRef<HTMLSpanElement>(null);
+  const khodabuxBrightRef = useRef<HTMLSpanElement>(null);
   const taglineRef = useRef<HTMLParagraphElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
   const badgeRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
+    if (!ready) return;
+
+    const bright = khodabuxBrightRef.current;
+    if (bright) {
+      gsap.set(bright, { clipPath: "inset(0 100% 0 0)", transition: "none" });
+    }
+
     const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
 
-    tl.from(badgeRef.current, { y: -20, opacity: 0, duration: 0.6, delay: 0.3 })
-      .from(nazeemRef.current, { y: 120, opacity: 0, duration: 1 }, "-=0.2")
-      .from(khodabuxRef.current, { y: 120, duration: 1 }, "-=0.92")
-      .to(khodabuxRef.current, {
-        backgroundPosition: "0% 0",
-        duration: 1.2,
-        ease: "power2.inOut",
-      }, "-=0.7")
-      .from(taglineRef.current, { y: 40, opacity: 0, duration: 0.8 }, "-=0.8")
-      .from(ctaRef.current, { y: 30, opacity: 0, duration: 0.6 }, "-=0.3");
-  }, []);
+    tl.from(badgeRef.current, { y: -20, opacity: 0, duration: 0.5 })
+      .from(nazeemRef.current, { y: 80, opacity: 0, duration: 0.8 }, "-=0.25")
+      .from(khodabuxRef.current, { y: 80, duration: 0.8 }, "-=0.8")
+      .to(
+        bright,
+        { clipPath: "inset(0 0% 0 0)", duration: 0.8, ease: "power2.inOut" },
+        "-=0.55"
+      )
+      .from(taglineRef.current, { y: 30, opacity: 0, duration: 0.6 }, "-=0.45")
+      .from(ctaRef.current, { y: 20, opacity: 0, duration: 0.5 }, "-=0.35");
+
+    return () => {
+      tl.kill();
+    };
+  }, [ready]);
 
   return (
     <section
@@ -44,7 +61,9 @@ const Hero = () => {
 
         <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-bold leading-[0.9] mb-8">
           <span ref={nazeemRef} className="block text-foreground">NAZEEM</span>
-          <span ref={khodabuxRef} className="block text-gradient">KHODABUX</span>
+          <GradientText ref={khodabuxRef} brightRef={khodabuxBrightRef} className="block">
+            KHODABUX
+          </GradientText>
         </h1>
 
         <p ref={taglineRef} className="font-mono text-muted-foreground text-sm md:text-base max-w-xl mx-auto mb-12 leading-relaxed">

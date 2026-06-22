@@ -1,4 +1,5 @@
 import { useReveal } from "@/hooks/useReveal";
+import GradientText from "./GradientText";
 
 const ContactSection = () => {
   const contentRef = useReveal();
@@ -12,7 +13,7 @@ const ContactSection = () => {
         <p className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-8">
           Got a project that needs
           <br />
-          <span className="text-gradient">someone who ships?</span>
+          <GradientText>someone who ships?</GradientText>
         </p>
         <p className="font-mono text-muted-foreground text-sm max-w-lg mx-auto mb-12">
           Legacy migration, headless commerce, ERP modules, or LLM integrations — if it needs

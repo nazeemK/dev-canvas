@@ -1,4 +1,5 @@
 import { useReveal } from "@/hooks/useReveal";
+import GradientText from "./GradientText";
 
 const stats = [
   { value: "10+", label: "Years in production" },
@@ -19,7 +20,7 @@ const AboutSection = () => {
             // about.tsx
           </h2>
           <p className="text-2xl md:text-4xl font-bold leading-snug mb-6">
-            I own systems <span className="text-gradient">end to end</span>
+            I own systems <GradientText>end to end</GradientText>
             <span className="text-muted-foreground text-lg block mt-2 font-normal font-mono">
               (architecture through deployment, not just the fun parts)
             </span>
@@ -43,7 +44,9 @@ const AboutSection = () => {
               className="reveal-item stat-item bg-surface-1 border border-border/20 rounded-xl p-6 md:p-8 hover:border-primary/30 transition-all duration-500"
               style={{ "--reveal-delay": `${i * 0.12}s` } as React.CSSProperties}
             >
-              <p className="text-4xl md:text-5xl font-bold text-gradient mb-2">{stat.value}</p>
+              <GradientText as="p" className="text-4xl md:text-5xl font-bold mb-2">
+                {stat.value}
+              </GradientText>
               <p className="font-mono text-xs text-muted-foreground uppercase tracking-wider">{stat.label}</p>
             </div>
           ))}

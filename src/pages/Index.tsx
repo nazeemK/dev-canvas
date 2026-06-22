@@ -22,10 +22,10 @@ const Index = () => {
       <div style={{ visibility: loading ? "hidden" : "visible" }}>
         <CustomCursor />
         <ScrollBackground />
-        <Navbar />
+        <Navbar ready={!loading} />
         <main>
           <div id="hero">
-            <Hero />
+            <Hero ready={!loading} />
           </div>
           <div id="about">
             <AboutSection />

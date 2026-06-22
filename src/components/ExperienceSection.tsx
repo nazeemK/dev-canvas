@@ -1,4 +1,5 @@
 import { useReveal } from "@/hooks/useReveal";
+import GradientText from "./GradientText";
 
 const experiences = [
   {
@@ -59,7 +60,7 @@ const ExperienceSection = () => {
           // experience.log
         </h2>
         <p className="text-3xl md:text-5xl font-bold max-w-3xl">
-          Places where I committed <span className="text-gradient">more than just code</span>
+          Places where I committed <GradientText>more than just code</GradientText>
         </p>
       </div>
 

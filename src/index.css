@@ -94,26 +94,30 @@
 }
 
 @layer components {
-  .text-gradient {
-    @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(
-      90deg,
-      hsl(var(--primary)) 0%,
-      hsl(68, 80%, 70%) 40%,
-      hsl(var(--primary) / 0.12) 55%,
-      hsl(var(--primary) / 0.12) 100%
-    );
-    background-size: 250% 100%;
-    background-position: 100% 0;
-    transition: background-position 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  /* Two-layer clip-path reveal — Chrome-safe (no bg-position on clipped text) */
+  .text-reveal {
+    position: relative;
+    display: inline-block;
   }
 
-  .revealed .text-gradient,
-  .text-gradient.swept {
-    background-position: 0% 0;
+  .text-reveal-dim {
+    color: hsl(var(--primary) / 0.12);
   }
 
-  .reveal-item .text-gradient {
+  .text-reveal-bright {
+    position: absolute;
+    inset: 0;
+    color: hsl(var(--primary));
+    clip-path: inset(0 100% 0 0);
+    transition: clip-path 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .revealed .text-reveal-bright,
+  .text-reveal.swept .text-reveal-bright {
+    clip-path: inset(0 0 0 0);
+  }
+
+  .reveal-item .text-reveal-bright {
     transition-delay: var(--reveal-delay, 0s);
   }
 

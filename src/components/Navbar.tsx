@@ -8,26 +8,46 @@ const navLinks = [
   { label: "Contact", href: "#contact" },
 ];
 
-const Navbar = () => {
+interface NavbarProps {
+  ready?: boolean;
+}
+
+const Navbar = ({ ready = true }: NavbarProps) => {
   const navRef = useRef<HTMLElement>(null);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    gsap.from(navRef.current, { y: -40, opacity: 0, duration: 0.8, delay: 0.2, ease: "power3.out" });
-
-    const handleScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", handleScroll);
+    const handleScroll = () => setScrolled(window.scrollY > 24);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    if (!ready || !navRef.current) return;
+
+    const tween = gsap.from(navRef.current, {
+      y: -24,
+      opacity: 0,
+      duration: 0.6,
+      ease: "power3.out",
+    });
+
+    return () => {
+      tween.kill();
+    };
+  }, [ready]);
 
   return (
     <nav
       ref={navRef}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled ? "bg-background/80 backdrop-blur-lg border-b border-border/20" : ""
+      className={`fixed top-0 left-0 right-0 z-50 border-b transition-[background-color,backdrop-filter,border-color] duration-300 ${
+        scrolled
+          ? "bg-background/80 backdrop-blur-lg border-border/20"
+          : "bg-transparent border-transparent"
       }`}
     >
-      <div className="flex items-center justify-between section-padding !py-5">
+      <div className="flex items-center justify-between px-6 md:px-12 lg:px-24 py-4 md:py-5">
         <a href="#" className="font-mono text-sm text-primary font-bold tracking-wider" data-cursor-hover>
           NK.dev
         </a>

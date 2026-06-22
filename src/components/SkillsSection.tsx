@@ -1,4 +1,5 @@
 import { useReveal } from "@/hooks/useReveal";
+import GradientText from "./GradientText";
 
 const skillCategories = [
   {
@@ -71,7 +72,7 @@ const SkillsSection = () => {
           // tech stack
         </h2>
         <p className="text-3xl md:text-5xl font-bold max-w-2xl">
-          Tools I use to turn <span className="text-gradient">coffee into code</span>
+          Tools I use to turn <GradientText>coffee into code</GradientText>
           <span className="text-muted-foreground text-lg block mt-2 font-normal font-mono">
             (and increasingly, prompts into production)
           </span>

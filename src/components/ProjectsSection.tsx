@@ -1,4 +1,5 @@
 import { useReveal } from "@/hooks/useReveal";
+import GradientText from "./GradientText";
 import { ExternalLink } from "lucide-react";
 
 const projects = [
@@ -60,7 +61,7 @@ const ProjectsSection = () => {
         </h2>
         <p className="text-3xl md:text-5xl font-bold max-w-3xl">
           Pixels I've pushed into{" "}
-          <span className="text-gradient">production</span>
+          <GradientText>production</GradientText>
         </p>
       </div>
 
