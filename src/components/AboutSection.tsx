@@ -2,10 +2,10 @@ import { useReveal } from "@/hooks/useReveal";
 import GradientText from "./GradientText";
 
 const stats = [
-  { value: "10+", label: "Years in production" },
-  { value: "500%+", label: "Page-load gains delivered" },
-  { value: "50%", label: "Infra costs cut (one project)" },
-  { value: "3", label: "Languages spoken natively" },
+  { value: "10+", label: "Years of experience" },
+  { value: "30+", label: "Projects delivered" },
+  { value: "5+", label: "Frameworks mastered" },
+  { value: "∞", label: "Cups of coffee consumed" },
 ];
 
 const AboutSection = () => {
@@ -26,13 +26,13 @@ const AboutSection = () => {
             </span>
           </p>
           <p className="text-foreground/60 leading-relaxed mb-6">
-            Senior full stack developer based in Curepipe, Mauritius — over a decade independently
+            Senior full stack developer based in Curepipe, Mauritius - over a decade independently
             architecting production systems across e-commerce, ERP, real estate, and agency environments.
-            Legacy PHP migrations, headless storefronts, middleware bridges to 30-year-old backends — I've done the hard ones.
+            Legacy PHP migrations, headless storefronts, middleware bridges to 30-year-old backends - I've done the hard ones.
           </p>
           <p className="text-foreground/60 leading-relaxed">
             Hands-on across Vue/Nuxt, React, Angular, Node, and PHP, with growing depth in AI-driven
-            workflows — LLM integrations, MCP, and prompt engineering included. Drawn to projects that
+            workflows - LLM integrations, MCP, and prompt engineering included. Drawn to projects that
             reward ownership and technical depth, not ticket-churn maintenance mode.
           </p>
         </div>

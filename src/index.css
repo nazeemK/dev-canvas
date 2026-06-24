@@ -94,7 +94,7 @@
 }
 
 @layer components {
-  /* Two-layer clip-path reveal — Chrome-safe (no bg-position on clipped text) */
+  /* Two-layer clip-path reveal - Chrome-safe (no bg-position on clipped text) */
   .text-reveal {
     position: relative;
     display: inline-block;

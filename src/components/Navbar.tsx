@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import gsap from "gsap";
 
 const navLinks = [
@@ -63,14 +64,13 @@ const Navbar = ({ ready = true }: NavbarProps) => {
             </a>
           ))}
         </div>
-        <a
-          href="/cv.pdf"
-          target="_blank"
+        <Link
+          to="/start-project"
           className="font-mono text-xs uppercase tracking-wider border border-primary/40 text-primary px-4 py-2 rounded-full hover:bg-primary hover:text-primary-foreground transition-all duration-300"
           data-cursor-hover
         >
-          Resume
-        </a>
+          Start a Project
+        </Link>
       </div>
     </nav>
   );

@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 
+const INTERACTIVE_SELECTOR = "a, button, input, textarea, select, label, [data-cursor-hover]";
+
 const CustomCursor = () => {
   const cursorRef = useRef<HTMLDivElement>(null);
   const followerRef = useRef<HTMLDivElement>(null);
@@ -37,20 +39,25 @@ const CustomCursor = () => {
       gsap.to(cursor, { scale: 1, duration: 0.3 });
     };
 
-    window.addEventListener("mousemove", moveCursor);
+    const isInteractive = (target: EventTarget | null) =>
+      target instanceof Element && Boolean(target.closest(INTERACTIVE_SELECTOR));
 
-    const interactiveElements = document.querySelectorAll("a, button, [data-cursor-hover]");
-    interactiveElements.forEach((el) => {
-      el.addEventListener("mouseenter", handleMouseEnter);
-      el.addEventListener("mouseleave", handleMouseLeave);
-    });
+    const handlePointerOver = (e: PointerEvent) => {
+      if (isInteractive(e.target)) handleMouseEnter();
+    };
+
+    const handlePointerOut = (e: PointerEvent) => {
+      if (isInteractive(e.target) && !isInteractive(e.relatedTarget)) handleMouseLeave();
+    };
+
+    window.addEventListener("mousemove", moveCursor);
+    document.addEventListener("pointerover", handlePointerOver);
+    document.addEventListener("pointerout", handlePointerOut);
 
     return () => {
       window.removeEventListener("mousemove", moveCursor);
-      interactiveElements.forEach((el) => {
-        el.removeEventListener("mouseenter", handleMouseEnter);
-        el.removeEventListener("mouseleave", handleMouseLeave);
-      });
+      document.removeEventListener("pointerover", handlePointerOver);
+      document.removeEventListener("pointerout", handlePointerOut);
     };
   }, [isPointerFine]);
 

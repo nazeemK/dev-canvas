@@ -22,7 +22,7 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
 
   useEffect(() => {
     if (currentLine >= lines.length) {
-      // All lines typed — fade out
+      // All lines typed - fade out
       const timer = setTimeout(() => {
         gsap.to(containerRef.current, {
           opacity: 0,

@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 import gsap from "gsap";
 import ThreeScene from "./ThreeScene";
 import GradientText from "./GradientText";
@@ -67,7 +68,7 @@ const Hero = ({ ready = true }: HeroProps) => {
         </h1>
 
         <p ref={taglineRef} className="font-mono text-muted-foreground text-sm md:text-base max-w-xl mx-auto mb-12 leading-relaxed">
-          I architect production systems across e-commerce, ERP, and legacy rescues — now with
+          I architect production systems across e-commerce, ERP, and legacy rescues - now with
           LLM integrations and agentic workflows in the mix. Based in Curepipe, shipped globally.
         </p>
 
@@ -79,13 +80,13 @@ const Hero = ({ ready = true }: HeroProps) => {
           >
             View Work →
           </a>
-          <a
-            href="#contact"
+          <Link
+            to="/start-project"
             className="font-mono text-sm uppercase tracking-widest border border-foreground/20 text-foreground px-8 py-4 rounded-full hover:border-primary/50 transition-all duration-300"
             data-cursor-hover
           >
             Let's Talk
-          </a>
+          </Link>
         </div>
       </div>
 

@@ -1,6 +1,5 @@
 import { useState } from "react";
 import LoadingScreen from "@/components/LoadingScreen";
-import CustomCursor from "@/components/CustomCursor";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import AboutSection from "@/components/AboutSection";
@@ -20,7 +19,6 @@ const Index = () => {
     <>
       {loading && <LoadingScreen onComplete={() => setLoading(false)} />}
       <div style={{ visibility: loading ? "hidden" : "visible" }}>
-        <CustomCursor />
         <ScrollBackground />
         <Navbar ready={!loading} />
         <main>

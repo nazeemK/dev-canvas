@@ -7,7 +7,7 @@ const projects = [
     title: "Dragon Electronics",
     subtitle: "Headless E-Commerce Migration",
     description:
-      "Migrated an 8-year-old legacy PHP storefront to a headless Vue/Nuxt architecture in under a year. Custom GraphQL APIs, microsecond search, payment gateway integrations, and a zero-downtime failover setup — bounce rate down, page speed up 500%+, VPS bill cut in half.",
+      "Migrated an 8-year-old legacy PHP storefront to a headless Vue/Nuxt architecture in under a year. Custom GraphQL APIs, microsecond search, payment gateway integrations, and a zero-downtime failover setup - bounce rate down, page speed up 500%+, VPS bill cut in half.",
     tech: ["Nuxt 3", "Vue 3", "GraphQL", "WooCommerce", "MySQL", "CI/CD", "Tailwind"],
     url: "https://www.dragonelectronics.mu",
     comingSoon: false,
@@ -18,7 +18,7 @@ const projects = [
     title: "Pam Golding Properties",
     subtitle: "Real Estate Portal",
     description:
-      "Middleware APIs bridging a 30-year-old legacy system to a modern PWA frontend — live property data without touching the core. Multi-currency daily price sync, query caching, and automated image compression built from scratch.",
+      "Middleware APIs bridging a 30-year-old legacy system to a modern PWA frontend - live property data without touching the core. Multi-currency daily price sync, query caching, and automated image compression built from scratch.",
     tech: ["PHP", "MySQL", "REST APIs", "PWA", "Zapier", "GA", "GSC"],
     url: "https://www.pamgolding.mu",
     comingSoon: false,
