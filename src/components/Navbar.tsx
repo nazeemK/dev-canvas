@@ -49,7 +49,7 @@ const Navbar = ({ ready = true }: NavbarProps) => {
     >
       <div className="flex items-center justify-between px-6 md:px-12 lg:px-24 py-4 md:py-5">
         <a href="#" className="font-mono text-sm text-primary font-bold tracking-wider" data-cursor-hover>
-          NK.dev
+          NK
         </a>
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (

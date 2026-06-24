@@ -3,9 +3,9 @@ import gsap from "gsap";
 
 const lines = [
   "$ initializing portfolio...",
-  "$ loading 10+ years of production systems...",
-  "$ booting LLM integrations...",
-  "$ deploying headless architecture...",
+  "$ loading 10+ years of experience...",
+  "$ compiling witty one-liners...",
+  "$ deploying awesomeness...",
   "> ready.",
 ];
 

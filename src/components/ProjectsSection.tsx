@@ -9,8 +9,8 @@ const projects = [
     description:
       "Migrated an 8-year-old legacy PHP storefront to a headless Vue/Nuxt architecture in under a year. Custom GraphQL APIs, microsecond search, payment gateway integrations, and a zero-downtime failover setup — bounce rate down, page speed up 500%+, VPS bill cut in half.",
     tech: ["Nuxt 3", "Vue 3", "GraphQL", "WooCommerce", "MySQL", "CI/CD", "Tailwind"],
-    url: null,
-    comingSoon: true,
+    url: "https://www.dragonelectronics.mu",
+    comingSoon: false,
     gradient: "from-amber-500/20 to-orange-600/20",
     accentColor: "text-amber-400",
   },
@@ -26,12 +26,12 @@ const projects = [
     accentColor: "text-emerald-400",
   },
   {
-    title: "Uniconsults ERP",
-    subtitle: "HR, Payroll & Accounting",
+    title: "Patel Optics",
+    subtitle: "Optical Retail Platform",
     description:
-      "Large-scale modular ERP spanning HR, payroll, accounting, and reporting across interconnected repositories. Leave Management, Payroll, and HR modules — with unit tests, CI/CD pipelines, and docs that actually help the next developer.",
-    tech: ["Angular.js", "Node.js", "Express", "PHP", "MySQL", "Sequelize", "Docker"],
-    url: null,
+      "A crystal-clear web experience for Mauritius' trusted optician. Product catalogue, appointment booking, and a UI so polished you'll need sunglasses to browse it.",
+    tech: ["React", "Node.js", "Express", "MySQL", "Tailwind CSS"],
+    url: "https://www.pateloptics.mu",
     comingSoon: false,
     gradient: "from-sky-500/20 to-blue-600/20",
     accentColor: "text-sky-400",
