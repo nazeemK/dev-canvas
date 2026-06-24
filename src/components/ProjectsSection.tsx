@@ -57,7 +57,7 @@ const ProjectsSection = () => {
     <section className="section-padding" id="projects">
       <div ref={titleRef} className="reveal mb-16 md:mb-24">
         <h2 className="font-mono text-xs uppercase tracking-[0.3em] text-muted-foreground mb-4">
-          // projects.showcase()
+          // projects.recent()
         </h2>
         <p className="text-3xl md:text-5xl font-bold max-w-3xl">
           Pixels I've pushed into{" "}
