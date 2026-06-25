@@ -8,6 +8,7 @@ import ProjectScopeStep from "@/components/onboarding/steps/ProjectScopeStep";
 import ContactStep from "@/components/onboarding/steps/ContactStep";
 import { usePageMeta } from "@/hooks/usePageMeta";
 import { pageMeta } from "@/lib/seo";
+import { submitProjectInquiry } from "@/lib/submitProjectInquiry";
 import {
   initialOnboardingData,
   ONBOARDING_STEPS,
@@ -78,6 +79,8 @@ const StartProject = () => {
   const [step, setStep] = useState(0);
   const [data, setData] = useState<OnboardingData>(initialOnboardingData);
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   usePageMeta(pageMeta.startProject);
 
   useEffect(() => {
@@ -105,15 +108,26 @@ const StartProject = () => {
     }
   };
 
-  const handleNext = () => {
+  const handleNext = async () => {
     if (step < ONBOARDING_STEPS.length - 1) {
+      setSubmitError(null);
       setStep((s) => s + 1);
       return;
     }
 
-    // Placeholder - wire to API / email service later
-    console.info("Project inquiry submitted:", data);
-    setSubmitted(true);
+    setSubmitting(true);
+    setSubmitError(null);
+
+    try {
+      await submitProjectInquiry(data);
+      setSubmitted(true);
+    } catch (error) {
+      setSubmitError(
+        error instanceof Error ? error.message : "Failed to send inquiry. Please try again.",
+      );
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   if (submitted) {
@@ -134,6 +148,8 @@ const StartProject = () => {
       onNext={handleNext}
       nextLabel={step === ONBOARDING_STEPS.length - 1 ? "Submit project" : "Next step"}
       nextDisabled={!canProceed()}
+      nextLoading={submitting}
+      error={submitError}
       showPrevious={step > 0}
     >
       {step === 0 && (

@@ -14,6 +14,8 @@ interface OnboardingShellProps {
   onNext: () => void;
   nextLabel?: string;
   nextDisabled?: boolean;
+  nextLoading?: boolean;
+  error?: string | null;
   showPrevious?: boolean;
 }
 
@@ -28,6 +30,8 @@ const OnboardingShell = ({
   onNext,
   nextLabel = "Next step",
   nextDisabled = false,
+  nextLoading = false,
+  error = null,
   showPrevious = true,
 }: OnboardingShellProps) => {
   const pageRef = useRef<HTMLDivElement>(null);
@@ -106,7 +110,13 @@ const OnboardingShell = ({
         ref={footerRef}
         className="border-t border-border/20 px-6 py-6 md:px-12 lg:px-24"
       >
-        <div className="mx-auto flex w-full max-w-5xl items-center justify-between">
+        <div className="mx-auto w-full max-w-5xl">
+          {error && (
+            <p className="mb-4 text-center font-mono text-sm text-destructive" role="alert">
+              {error}
+            </p>
+          )}
+          <div className="flex items-center justify-between">
           {showPrevious && onPrevious ? (
             <button
               type="button"
@@ -123,12 +133,13 @@ const OnboardingShell = ({
           <button
             type="button"
             onClick={onNext}
-            disabled={nextDisabled}
+            disabled={nextDisabled || nextLoading}
             data-cursor-hover
             className="font-mono text-sm uppercase tracking-widest rounded-full bg-primary px-8 py-3.5 text-primary-foreground transition-all duration-300 hover:shadow-[0_0_40px_hsl(68,100%,50%,0.3)] disabled:cursor-not-allowed disabled:opacity-40"
           >
-            {nextLabel}
+            {nextLoading ? "Sending…" : nextLabel}
           </button>
+          </div>
         </div>
       </footer>
     </div>
