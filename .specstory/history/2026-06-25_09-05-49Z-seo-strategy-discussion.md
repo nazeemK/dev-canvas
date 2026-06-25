@@ -2930,4 +2930,286 @@ The user may not have signed up for Web3Forms yet. The error is simply the missi
 
 The runtime config loader will prioritize the `VITE_` environment variable and fall back to `config.json`. The Dockerfile will declare both `VITE_WEB3FORMS_ACCESS_KEY` and `VITE_SITE_URL` as build arguments. A local `.env` file will be created from the example template, leaving the Web3Forms key empty for the user to populate.
 
-A runtime `config.json` would be gitignored and missing after deployment, so that path is abandoned. The plan is to use Docker build arguments for Dokploy, a local `.env` file for development, and clear instructions. The `.env` file itself will be added to `.gitignore`, since only `.env.example` should be committed.</details></think>
+A runtime `config.json` would be gitignored and missing after deployment, so that path is abandoned. The plan is to use Docker build arguments for Dokploy, a local `.env` file for development, and clear instructions. The `.env` file itself will be added to `.gitignore`, since only `.env.example` should be committed.
+
+FormSubmit.co offers a zero-configuration alternative. It requires only an email address in the form action and eliminates the need for API keys entirely.
+
+FormSubmit.co requires email verification on first submission and may redirect unless called via AJAX. Its endpoint is `https://formsubmit.co/ajax/<email>`. The email address is already visible in `seo.ts`, so using FormSubmit would eliminate API keys, environment variables, and Docker build arguments entirely.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
+<details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "glob": "src/**/*",
+  "pattern": "khodabux|@gmail"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "pattern": "khodabux|@gmail",
+  "topFiles": [
+    {
+      "matchCount": 4,
+      "uri": ".\\src\\lib\\seo.ts"
+    },
+    {
+      "matchCount": 2,
+      "uri": ".\\src\\components\\ContactSection.tsx"
+    },
+    {
+      "matchCount": 5,
+      "uri": ".\\src\\components\\Hero.tsx"
+    }
+  ],
+  "totalFiles": 3,
+  "totalMatches": 11
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: c:\Users\NAZEEM\Documents\Projects\KN\dev-canvas\.github\workflows\deploy.yml</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+The site appears to be deployed to Dokploy rather than GitHub Pages.
+
+The form is broken because the Web3Forms access key is missing. Switching to FormSubmit.co would eliminate all configuration. It uses the site email and works immediately after one-time confirmation.
+
+I will replace Web3Forms with FormSubmit. The inquiry script will use siteConfig.email as the recipient. I will also remove the Web3Forms environment variable from env.example and vite-env.d.ts.</details></think>
+
+_**Agent (default)**_
+
+The Web3Forms key was never set — there's no `.env` and Dokploy's Docker build doesn't pass it at build time. Switching to FormSubmit so it works with your email only, no API key or env vars.
+
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: c:\Users\NAZEEM\Documents\Projects\KN\dev-canvas\src\lib\submitProjectInquiry.ts</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: c:\Users\NAZEEM\Documents\Projects\KN\dev-canvas\.env.example</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: c:\Users\NAZEEM\Documents\Projects\KN\dev-canvas\src\vite-env.d.ts</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
+<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd "c:\Users\NAZEEM\Documents\Projects\KN\dev-canvas"; npm run build</summary>
+
+```bash
+cd "c:\Users\NAZEEM\Documents\Projects\KN\dev-canvas"; npm run build
+```
+
+```
+
+&gt; vite_react_shadcn_ts@0.0.0 build
+&gt; vite build
+
+vite v5.4.19 building for production...
+transforming...
+Browserslist: browsers data (caniuse-lite) is 12 months old. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+✓ 1726 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                     4.26 kB │ gzip:   1.28 kB
+dist/assets/index-CaRPDvl8.css     75.61 kB │ gzip:  12.92 kB
+dist/assets/index-BLS84pkn.js   1,341.49 kB │ gzip: 395.92 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 5.15s
+
+```
+</details>
+</tool-use>
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+That error was on us — Web3Forms needed `VITE_WEB3FORMS_ACCESS_KEY` in a `.env` file at **build time**, and neither local `.env` nor Dokploy had it set.
+
+**Switched to [FormSubmit](https://formsubmit.co)** — no API key, no env vars. Submissions go to `khodabux.n@gmail.com` (from your SEO config).
+
+## One-time step after deploy
+
+FormSubmit sends an **activation email** on the **first** test submission. You must click the link in that email — then all future submissions work.
+
+1. Deploy this change  
+2. Submit a test inquiry on `/start-project`  
+3. Check `khodabux.n@gmail.com` for FormSubmit’s activation email → click confirm  
+4. Submit again — you should get the lead email
+
+No Dokploy env vars needed. Just deploy and activate once.
+
+---
+
+_**User**_
+
+Failed to send inquiry. Please try again or contact me on WhatsApp.
+
+
+
+---
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Form submission failed. The user should retry or contact via WhatsApp.</details></think>
+
+_**Agent (default)**_
+
+Debugging the FormSubmit integration — checking the API response and our submit code.
+
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: c:\Users\NAZEEM\Documents\Projects\KN\dev-canvas\src\lib\submitProjectInquiry.ts</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
+<details><summary>Tool use: **run_terminal_command_v2** • Run command: curl -s -w "\nHTTP_CODE:%{http_code}" -X POST "https://formsubmit.co/ajax/khodabux.n@gmail.com" -H "Content-Type: application/json" -H "Accept: application/json" -d "{\"_subject\":\"Test inquiry\",\"_template\":\"table\",\"name\":\"Test User\",\"email\":\"test@example.com\",\"phone\":\"123456\"}"</summary>
+
+```bash
+curl -s -w "\nHTTP_CODE:%{http_code}" -X POST "https://formsubmit.co/ajax/khodabux.n@gmail.com" -H "Content-Type: application/json" -H "Accept: application/json" -d "{\"_subject\":\"Test inquiry\",\"_template\":\"table\",\"name\":\"Test User\",\"email\":\"test@example.com\",\"phone\":\"123456\"}"
+```
+
+```
+Invoke-WebRequest : Missing an argument for parameter 'SessionVariable'. Specify a parameter of type 'System.String' 
+and try again.
+At C:\Users\NAZEEM\AppData\Local\Temp\ps-script-99b1e81a-089f-46a5-b619-15f3e380c9e1.ps1:108 char:6
++ curl -s -w "\nHTTP_CODE:%{http_code}" -X POST "https://formsubmit.co/ ...
++      ~~
+    + CategoryInfo          : InvalidArgument: (:) [Invoke-WebRequest], ParameterBindingException
+    + FullyQualifiedErrorId : MissingArgument,Microsoft.PowerShell.Commands.InvokeWebRequestCommand
+ 
+
+```
+</details>
+</tool-use>
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="web_fetch">
+<details>
+<summary>Tool use: **web_fetch**</summary>
+
+
+Parameters:
+
+```json
+{
+  "url": "https://formsubmit.co/documentation"
+}
+```
+Result:
+
+```json
+{
+  "markdown": "# FORMSUBMIT DOCUMENTATION\n\n#### _replyto\n\nThis value is used for the email's Reply-To field. This way you can directly \"Reply\" to the email to respond to the person who originally submitted the form.\n\nTo activate this feature your form should request the user's email address.\n\n \n\n#### _next\n\nBy default, after submitting a form the user is shown the FormSubmit \"Thank You\" page. You can provide an alternative URL for \"Thank You\" page.\n\n \n\n#### _subject\n\nThis value is used for the email's subject, so that you can quickly reply to submissions without having to edit the subject line each time.\n\n \n\n#### _cc\n\nThis value is used for the email's CC Field. This lets you send a copy of each submission to another email address.\n\n \n\nIf you want to CC multiple email addresses, then just make it a list of email addresses separate by commas.\n\n \n\n#### _blacklist\n\nAdd this \"blacklist\" field along with a list of comma-separated phrases to filter out spam content from your submissions. Hence submissions that are containing given phrases will be completely disregarded while fooling spammers.\n\n \n\n* We recommend a maximum of 20 phrases as more can slow down the submission process.\n\n#### Disable reCAPTCHA _captcha\n\nDon't want your users to complete a reCAPTCHA? Each form now comes with the option to disable the reCAPTCHA, so you can maintain complete control over your form. You can even keep reCAPTCHA on a few forms that might be suceptible to spam, while disabling it on others.\n\n \n\n* We highly recommend you use the reCAPTCHA (not to disable it) in order to avoid some technical limitations which we impose from time to time in order to filter out bots, spam, and other malicious programs.\n\n#### _honey\n\nAdd this \"honeypot\" field to avoid spam by fooling scrapers. If a value is provided, the submission will be silently ignored. The input should be hidden with CSS.\n\nAll forms come with reCAPTCHA, which uses advanced machine learning techniques to distinguish between humans and bots, so for most forms this isn't necessary.\n\n \n\n#### _autoresponse\n\nYou can send an instant response to your users with a copy of the submission. Add a custom message to the email body.\n\n \n\nTo activate this feature your form should request the user's email address.\n\n \n\n* autoresponse won't work with forms that are disabled reCAPTCHA and forms that are submitting through AJAX.\n\n#### _template\n\nYou can select an email template from 3 different templates. By default, FormSubmit uses the basic template.\n\n \n\nView all templates here →\n\n#### _webhook\n\nThis feature allows you to configure a webhook that will be triggered each time a form receives a new submission. Webhooks can be used to manipulate data in real-time.\n\n \n\nsample webhook response\n\n{ \"form_data\": { \"name\": \"Devro LABS\", \"email\": \" [email protected]\", \"message\": \"hello! there\" } }\n\n#### Invisible emails\n\nGet a random-like string to replace your naked email address in the action attribute of your form. Your email address will remain unknown to spam-bots and human visitors.\n\nThis random string will send to you when you confirm your email address.\n\n \n\n#### File uploads\n\nFormSubmit allows you to upload files to your form natively. File upload allows you to collect information that may not otherwise be expressed well in text-based HTML input fields.\n\nAll HTML forms have a default attribute called \"enctype\" that you need to override. In the form declaration, you need to set \"enctype=multipart/form-data\".\n\n Send Test \n\n* You can use several file input fields within a form but the sum of each file size must not exceed the 10MB size limit.\n\n#### AJAX Forms\n\nYou can easily submit the form using AJAX without ever having your users leave the page. — this even works cross-origin.\n\n$.ajax({ url: \"https://formsubmit.co/ajax/ [email protected]\", method: \"POST\", data: { name: \"FormSubmit\", message: \"I'm from Devro LABS\" }, dataType: \"json\" });\n\nView more AJAX examples here →\n\n#### Unlimited forms and submissions\n\nYou can have unlimited submissions from unlimited forms you created.\n\nFor one email you can create unlimited forms and also you can receive unlimited submissions.\n\n#### Access to submissions archive\n\nIf you ever missed a submission email, for any reason, you can still get your all submissions, all listed and timestamped with full data.\n\nYou can access your submission archive through our API for free. The number of times that you can access the API is limited to 5 times a day.\n\n* We retain your form submissions for 30 days. Uploaded files won't retain or can't access through the API.\n\n#### Read our API Documentation →\n\nhttps://formsubmit.co/api-documentation",
+  "url": "https://formsubmit.co/documentation"
+}
+```
+User decision: **accepted**
+
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="web_fetch"><details>
+<summary>Tool use: **web_fetch**</summary>
+
+</details></tool-use>
