@@ -134,3 +134,514 @@ Status: **completed**
 <summary>Tool use: **ripgrep_raw_search**</summary>
 
 </details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Replacing all em dashes with regular dashes across the project.</details></think>
+
+_**Agent (default)**_
+
+Replacing em dashes in source files only, excluding `.specstory` history logs.
+
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
+<details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "glob": "src/**/*",
+  "outputMode": "content",
+  "pattern": "—"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "pattern": "—",
+  "topFiles": [
+    {
+      "matchCount": 3,
+      "uri": "src/components/AboutSection.tsx"
+    },
+    {
+      "matchCount": 5,
+      "uri": "src/components/ExperienceSection.tsx"
+    },
+    {
+      "matchCount": 2,
+      "uri": "src\\components\\ProjectsSection.tsx"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/components/LoadingScreen.tsx"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/components/Hero.tsx"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src\\index.css"
+    },
+    {
+      "matchCount": 3,
+      "uri": "src\\components\\AboutSection.tsx"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/components/ContactSection.tsx"
+    },
+    {
+      "matchCount": 4,
+      "uri": "src\\pages\\StartProject.tsx"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src\\components\\ContactSection.tsx"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src\\components\\Hero.tsx"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/index.css"
+    },
+    {
+      "matchCount": 2,
+      "uri": "src/components/ProjectsSection.tsx"
+    }
+  ],
+  "totalFiles": 13,
+  "totalMatches": 26
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
+<details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "glob": "public/**/*",
+  "outputMode": "content",
+  "pattern": "—"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "pattern": "—",
+  "topFiles": [],
+  "totalFiles": 0,
+  "totalMatches": 0
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
+<details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "glob": "*.{html,json,md}",
+  "outputMode": "content",
+  "pattern": "—"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "content",
+  "pattern": "—",
+  "topFiles": [
+    {
+      "matchCount": 35,
+      "uri": ".specstory\\history\\2026-06-22_09-46-10Z-header-logo-and-entry-animation-updates.md"
+    },
+    {
+      "matchCount": 55,
+      "uri": ".specstory/history/2026-06-22_06-17-54Z-heading-animation-and-styling-issue.md"
+    },
+    {
+      "matchCount": 5,
+      "uri": ".specstory/history/2026-06-22_09-26-16Z-dokploy-host-error-configuration.md"
+    },
+    {
+      "matchCount": 15,
+      "uri": ".specstory/history/2026-06-22_09-44-07Z-chrome-animation-error-report.md"
+    },
+    {
+      "matchCount": 12,
+      "uri": ".specstory/history/2026-06-22_07-49-44Z-copy-update-based-on-cv.md"
+    },
+    {
+      "matchCount": 28,
+      "uri": ".specstory/history/2026-06-22_05-13-23Z-text-glow-and-cursor-visibility-issue.md"
+    },
+    {
+      "matchCount": 35,
+      "uri": ".specstory/history/2026-06-22_09-46-10Z-header-logo-and-entry-animation-updates.md"
+    }
+  ],
+  "totalFiles": 7,
+  "totalMatches": 185
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+All source files have been located. I will replace every em dash with a regular dash across the project.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
+<details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "glob": "!**/.specstory/**",
+  "outputMode": "files_with_matches",
+  "path": "c:\\Users\\NAZEEM\\Documents\\Projects\\KN\\dev-canvas",
+  "pattern": "—"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "files_with_matches",
+  "path": "c:\\Users\\NAZEEM\\Documents\\Projects\\KN\\dev-canvas",
+  "pattern": "—",
+  "topFiles": [
+    {
+      "matchCount": 1,
+      "uri": "src/components/LoadingScreen.tsx"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/components/Hero.tsx"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src\\components\\Hero.tsx"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/components/AboutSection.tsx"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/components/ProjectsSection.tsx"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/index.css"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/components/ExperienceSection.tsx"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src\\components\\AboutSection.tsx"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src/components/ContactSection.tsx"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src\\components\\ProjectsSection.tsx"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src\\components\\ContactSection.tsx"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src\\pages\\StartProject.tsx"
+    },
+    {
+      "matchCount": 1,
+      "uri": "src\\index.css"
+    }
+  ],
+  "totalFiles": 13,
+  "totalMatches": 13
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+All em dashes are located in eight unique source files.</details></think>
+
+_**Agent (default)**_
+
+Replacing em dashes in all 8 source files.
+
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: c:\Users\NAZEEM\Documents\Projects\KN\dev-canvas\src\components\AboutSection.tsx</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: c:\Users\NAZEEM\Documents\Projects\KN\dev-canvas\src\components\ExperienceSection.tsx</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: c:\Users\NAZEEM\Documents\Projects\KN\dev-canvas\src\components\ProjectsSection.tsx</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: c:\Users\NAZEEM\Documents\Projects\KN\dev-canvas\src\components\LoadingScreen.tsx</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: c:\Users\NAZEEM\Documents\Projects\KN\dev-canvas\src\components\Hero.tsx</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: c:\Users\NAZEEM\Documents\Projects\KN\dev-canvas\src\index.css</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: c:\Users\NAZEEM\Documents\Projects\KN\dev-canvas\src\components\ContactSection.tsx</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: c:\Users\NAZEEM\Documents\Projects\KN\dev-canvas\src\pages\StartProject.tsx</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+All em dashes have been replaced with regular dashes. Now verifying that none remain in the source files.</details></think>
+
+_**Agent (default)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
+<details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+
+Parameters:
+
+```json
+{
+  "caseInsensitive": false,
+  "glob": "src/**/*",
+  "outputMode": "count",
+  "pattern": "—"
+}
+```
+Additional data:
+
+```json
+{
+  "isPruned": true,
+  "outputMode": "count",
+  "pattern": "—",
+  "topFiles": [],
+  "totalFiles": 0,
+  "totalMatches": 0
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search"><details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+</details></tool-use>
+
+_**Agent (default)**_
+
+<think><details><summary>Thought Process</summary>
+Em dashes were replaced with regular dashes throughout the source directory.</details></think>
+
+_**Agent (default)**_
+
+Replaced all em dashes (`—`) with regular hyphens (`-`) across **8 source files** (19 total replacements):
+
+| File | Count |
+|------|-------|
+| `AboutSection.tsx` | 3 |
+| `ExperienceSection.tsx` | 6 |
+| `StartProject.tsx` | 4 |
+| `ProjectsSection.tsx` | 2 |
+| `ContactSection.tsx` | 1 |
+| `Hero.tsx` | 1 |
+| `LoadingScreen.tsx` | 1 |
+| `index.css` | 1 |
+
+No em dashes remain under `src/`. `.specstory/history/` still has them in chat logs; I left those alone. Say if you want those updated too.
+
+Note: en dashes (`–`) in ranges like `40–50%` were not changed, since those are a different character from em dashes.
