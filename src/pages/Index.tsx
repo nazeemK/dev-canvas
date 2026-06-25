@@ -11,12 +11,17 @@ import ContactSection from "@/components/ContactSection";
 import ScrollBackground from "@/components/ScrollBackground";
 import Footer from "@/components/Footer";
 import BackToTop from "@/components/BackToTop";
+import SeoSchema from "@/components/SeoSchema";
+import { usePageMeta } from "@/hooks/usePageMeta";
+import { pageMeta } from "@/lib/seo";
 
 const Index = () => {
   const [loading, setLoading] = useState(true);
+  usePageMeta(pageMeta.home);
 
   return (
     <>
+      <SeoSchema />
       {loading && <LoadingScreen onComplete={() => setLoading(false)} />}
       <div style={{ visibility: loading ? "hidden" : "visible" }}>
         <ScrollBackground />

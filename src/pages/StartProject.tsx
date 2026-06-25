@@ -6,6 +6,8 @@ import ProjectTypeStep from "@/components/onboarding/steps/ProjectTypeStep";
 import BusinessInfoStep from "@/components/onboarding/steps/BusinessInfoStep";
 import ProjectScopeStep from "@/components/onboarding/steps/ProjectScopeStep";
 import ContactStep from "@/components/onboarding/steps/ContactStep";
+import { usePageMeta } from "@/hooks/usePageMeta";
+import { pageMeta } from "@/lib/seo";
 import {
   initialOnboardingData,
   ONBOARDING_STEPS,
@@ -76,6 +78,7 @@ const StartProject = () => {
   const [step, setStep] = useState(0);
   const [data, setData] = useState<OnboardingData>(initialOnboardingData);
   const [submitted, setSubmitted] = useState(false);
+  usePageMeta(pageMeta.startProject);
 
   useEffect(() => {
     window.scrollTo(0, 0);

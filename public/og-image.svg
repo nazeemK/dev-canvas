@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Nazeem Khodabux  Senior Full-Stack Developer">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0a0a"/>
+      <stop offset="100%" stop-color="#141414"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ddff00"/>
+      <stop offset="100%" stop-color="#a8c800"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect x="80" y="80" width="4" height="470" fill="url(#accent)" rx="2"/>
+  <text x="120" y="260" fill="#ffffff" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="72" font-weight="700" letter-spacing="-1">Nazeem Khodabux</text>
+  <text x="120" y="330" fill="#ddff00" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="28" font-weight="400" letter-spacing="0.15em">SENIOR FULL-STACK DEVELOPER</text>
+  <text x="120" y="390" fill="#a3a3a3" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="22">E-commerce · ERP · Legacy Migrations · LLM Integrations</text>
+  <text x="120" y="440" fill="#737373" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="20">Curepipe, Mauritius · 10+ Years · Available Worldwide</text>
+  <text x="120" y="520" fill="#525252" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18">nazeemkhodabux.com</text>
+</svg>

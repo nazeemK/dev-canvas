@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import gsap from "gsap";
+import LogoMark from "./LogoMark";
 
 const navLinks = [
   { label: "Skills", href: "#skills" },
@@ -49,8 +50,8 @@ const Navbar = ({ ready = true }: NavbarProps) => {
       }`}
     >
       <div className="flex items-center justify-between px-6 md:px-12 lg:px-24 py-4 md:py-5">
-        <a href="#" className="font-mono text-sm text-primary font-bold tracking-wider" data-cursor-hover>
-          NK
+        <a href="#" className="group" data-cursor-hover>
+          <LogoMark className="group-hover:border-primary/70" />
         </a>
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (

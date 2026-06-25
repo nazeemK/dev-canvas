@@ -12,3 +12,7 @@ Allow: /
 
 User-agent: *
 Allow: /
+
+Sitemap: https://nazeemkhodabux.com/sitemap.xml
+
+# LLM context file (llms.txt spec): https://nazeemkhodabux.com/llms.txt
