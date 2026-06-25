@@ -1,4 +1,5 @@
 import type { OnboardingData } from "@/types/onboarding";
+import { siteConfig } from "@/lib/seo";
 
 const PROJECT_TYPE_LABELS: Record<string, string> = {
   "web-ecommerce": "Web App / E-Commerce",
@@ -45,25 +46,19 @@ function label(map: Record<string, string>, id: string) {
 }
 
 export async function submitProjectInquiry(data: OnboardingData) {
-  const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
-
-  if (!accessKey) {
-    throw new Error("Form is not configured yet. Please contact me directly via WhatsApp or LinkedIn.");
-  }
-
-  const response = await fetch("https://api.web3forms.com/submit", {
+  const response = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(siteConfig.email)}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",
     },
     body: JSON.stringify({
-      access_key: accessKey,
-      subject: `New project inquiry — ${data.contactName} (${data.businessName || "no business name"})`,
-      from_name: data.contactName,
+      _subject: `New project inquiry — ${data.contactName} (${data.businessName || "no business name"})`,
+      _template: "table",
+      _captcha: "false",
+      name: data.contactName,
       email: data.email,
       phone: data.phone,
-      botcheck: "",
       project_types: data.projectTypes.map((id) => label(PROJECT_TYPE_LABELS, id)).join(", "),
       business_name: data.businessName,
       team_size: label(TEAM_SIZE_LABELS, data.teamSize),
@@ -74,9 +69,13 @@ export async function submitProjectInquiry(data: OnboardingData) {
     }),
   });
 
-  const result = (await response.json()) as { success: boolean; message?: string };
+  if (!response.ok) {
+    throw new Error("Failed to send inquiry. Please try again or contact me on WhatsApp.");
+  }
 
-  if (!response.ok || !result.success) {
-    throw new Error(result.message ?? "Failed to send inquiry. Please try again.");
+  const result = (await response.json()) as { success?: string };
+
+  if (result.success !== "true") {
+    throw new Error("Failed to send inquiry. Please try again or contact me on WhatsApp.");
   }
 }

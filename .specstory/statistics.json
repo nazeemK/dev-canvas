@@ -82,13 +82,13 @@
       "last_updated": "2026-06-25T09:09:49Z"
     },
     "f7c596c9-cba6-4dba-bd88-f739a2e07d37": {
-      "user_message_count": 5,
-      "agent_message_count": 115,
+      "user_message_count": 6,
+      "agent_message_count": 140,
       "start_timestamp": "2026-06-25T13:05:49+04:00",
       "end_timestamp": "2026-06-25T13:05:49+04:00",
-      "markdown_size_bytes": 94619,
+      "markdown_size_bytes": 111376,
       "provider": "cursoride",
-      "last_updated": "2026-06-25T09:55:33Z"
+      "last_updated": "2026-06-25T11:02:26Z"
     }
   }
 }
