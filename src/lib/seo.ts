@@ -15,7 +15,7 @@ export const siteConfig = {
     countryCode: "MU",
   },
   jobTitle: "Senior Full-Stack Developer",
-  image: `${SITE_URL.replace(/\/$/, "")}/og-image.svg`,
+  image: `${SITE_URL.replace(/\/$/, "")}/og-image.png`,
   sameAs: [
     "https://github.com/nazeemK",
     "https://linkedin.com/in/nazeemkhodabux",
