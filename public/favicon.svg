@@ -1,4 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="NK">
   <rect x="1.5" y="1.5" width="29" height="29" rx="5" fill="#0a0a0a" stroke="#ddff00" stroke-opacity="0.4" stroke-width="1.5"/>
-  <text x="16" y="20.5" text-anchor="middle" fill="#ddff00" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10.5" font-weight="700" letter-spacing="0.12em">NK</text>
+  <path fill="#ddff00" d="M7.5 11h1.6v7.4l5.2-7.4h1.7v10h-1.6v-7.4l-5.2 7.4H7.5V11z"/>
+  <path fill="#ddff00" d="M16.2 11h1.6v4.1l4.4-4.1h2l-3.7 3.7 3.9 6.3h-2l-3.3-5.3-1.3 1.1V21h-1.6V11z"/>
 </svg>

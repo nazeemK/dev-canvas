@@ -12,9 +12,9 @@
   </defs>
   <rect width="1200" height="630" fill="url(#bg)"/>
   <rect x="80" y="80" width="4" height="470" fill="url(#accent)" rx="2"/>
-  <text x="120" y="260" fill="#ffffff" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="72" font-weight="700" letter-spacing="-1">Nazeem Khodabux</text>
-  <text x="120" y="330" fill="#ddff00" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="28" font-weight="400" letter-spacing="0.15em">SENIOR FULL-STACK DEVELOPER</text>
-  <text x="120" y="390" fill="#a3a3a3" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="22">E-commerce - ERP - Legacy Migrations - LLM Integrations</text>
-  <text x="120" y="440" fill="#737373" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="20">Curepipe, Mauritius - 10+ Years - Available Worldwide</text>
-  <text x="120" y="520" fill="#525252" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18">nazeemkhodabux.com</text>
+  <text x="120" y="260" fill="#ffffff" font-family="sans-serif" font-size="72" font-weight="700">Nazeem Khodabux</text>
+  <text x="120" y="330" fill="#ddff00" font-family="monospace" font-size="28" font-weight="700">SENIOR FULL-STACK DEVELOPER</text>
+  <text x="120" y="390" fill="#a3a3a3" font-family="monospace" font-size="22">E-commerce - ERP - Legacy Migrations - LLM Integrations</text>
+  <text x="120" y="440" fill="#737373" font-family="monospace" font-size="20">Curepipe, Mauritius - 10+ Years - Available Worldwide</text>
+  <text x="120" y="520" fill="#525252" font-family="monospace" font-size="18">nazeemkhodabux.com</text>
 </svg>
