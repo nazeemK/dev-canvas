@@ -7,38 +7,15 @@ import BusinessInfoStep from "@/components/onboarding/steps/BusinessInfoStep";
 import ProjectScopeStep from "@/components/onboarding/steps/ProjectScopeStep";
 import ContactStep from "@/components/onboarding/steps/ContactStep";
 import { usePageMeta } from "@/hooks/usePageMeta";
-import { pageMeta } from "@/lib/seo";
 import { submitProjectInquiry } from "@/lib/submitProjectInquiry";
+import { useLocale } from "@/i18n";
 import {
   initialOnboardingData,
-  ONBOARDING_STEPS,
   OnboardingData,
 } from "@/types/onboarding";
 
-const stepCopy = [
-  {
-    title: "What are you looking to build?",
-    description:
-      "Select one or more options that fit your needs. This helps me understand the scope before we talk.",
-  },
-  {
-    title: "Tell me about your business",
-    description:
-      "A few details about who you are and how your team is set up - solo founder or full company, it all counts.",
-  },
-  {
-    title: "What's the scope looking like?",
-    description:
-      "Rough budget and timeline help me gauge fit and prioritise the right approach for your project.",
-  },
-  {
-    title: "Almost there - how do I reach you?",
-    description:
-      "Leave your contact details and I'll get back to you within 24 hours with next steps.",
-  },
-];
-
 const SubmissionSuccess = () => {
+  const { t } = useLocale();
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -58,30 +35,39 @@ const SubmissionSuccess = () => {
       className="flex min-h-screen flex-col items-center justify-center bg-background px-6 text-center"
     >
       <p className="mb-4 font-mono text-xs uppercase tracking-[0.3em] text-primary">
-        // submission received
+        {t.onboarding.successLabel}
       </p>
-      <h1 className="mb-4 text-3xl font-bold md:text-5xl">Thanks - I'll be in touch.</h1>
+      <h1 className="mb-4 text-3xl font-bold md:text-5xl">{t.onboarding.successTitle}</h1>
       <p className="mb-10 max-w-md font-mono text-sm text-muted-foreground">
-        Your project details are in. Expect a reply within 24 hours.
+        {t.onboarding.successBlurb}
       </p>
       <Link
         to="/"
         className="font-mono text-sm uppercase tracking-widest rounded-full bg-primary px-8 py-3.5 text-primary-foreground transition-all duration-300 hover:shadow-[0_0_40px_hsl(68,100%,50%,0.3)]"
         data-cursor-hover
       >
-        Back to site
+        {t.onboarding.backToSite}
       </Link>
     </div>
   );
 };
 
 const StartProject = () => {
+  const { t } = useLocale();
   const [step, setStep] = useState(0);
   const [data, setData] = useState<OnboardingData>(initialOnboardingData);
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
-  usePageMeta(pageMeta.startProject);
+
+  const steps = t.onboarding.steps;
+  const stepCopy = t.onboarding.stepCopy;
+
+  usePageMeta({
+    title: t.seo.startProject.title,
+    description: t.seo.startProject.description,
+    path: "/start-project",
+  });
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -109,7 +95,7 @@ const StartProject = () => {
   };
 
   const handleNext = async () => {
-    if (step < ONBOARDING_STEPS.length - 1) {
+    if (step < steps.length - 1) {
       setSubmitError(null);
       setStep((s) => s + 1);
       return;
@@ -119,11 +105,14 @@ const StartProject = () => {
     setSubmitError(null);
 
     try {
-      await submitProjectInquiry(data);
+      await submitProjectInquiry(data, {
+        formNotSetup: t.onboarding.formNotSetup,
+        submitFailed: t.onboarding.submitFailedWhatsApp,
+      });
       setSubmitted(true);
     } catch (error) {
       setSubmitError(
-        error instanceof Error ? error.message : "Failed to send inquiry. Please try again.",
+        error instanceof Error ? error.message : t.onboarding.submitFailed,
       );
     } finally {
       setSubmitting(false);
@@ -134,19 +123,19 @@ const StartProject = () => {
     return <SubmissionSuccess />;
   }
 
-  const current = ONBOARDING_STEPS[step];
+  const current = steps[step];
   const copy = stepCopy[step];
 
   return (
     <OnboardingShell
       stepLabel={current.label}
       stepIndex={step}
-      totalSteps={ONBOARDING_STEPS.length}
+      totalSteps={steps.length}
       title={copy.title}
       description={copy.description}
       onPrevious={step > 0 ? () => setStep((s) => s - 1) : undefined}
       onNext={handleNext}
-      nextLabel={step === ONBOARDING_STEPS.length - 1 ? "Submit project" : "Next step"}
+      nextLabel={step === steps.length - 1 ? t.onboarding.submit : t.onboarding.next}
       nextDisabled={!canProceed()}
       nextLoading={submitting}
       error={submitError}

@@ -2,6 +2,7 @@ import { useReveal } from "@/hooks/useReveal";
 import GradientText from "./GradientText";
 import { Link } from "react-router-dom";
 import { Facebook, Github, Instagram, Linkedin } from "lucide-react";
+import { useLocale } from "@/i18n";
 
 const socialLinks = [
   {
@@ -45,22 +46,22 @@ function WhatsAppIcon({ className }: { className?: string }) {
 }
 
 const ContactSection = () => {
+  const { t } = useLocale();
   const contentRef = useReveal();
 
   return (
     <section className="section-padding flex items-center" id="contact">
       <div ref={contentRef} className="reveal mx-auto max-w-4xl text-center">
         <h2 className="mb-6 font-mono text-xs uppercase tracking-[0.3em] text-muted-foreground">
-          // init contact
+          {t.contact.label}
         </h2>
         <p className="mb-6 text-4xl font-bold leading-tight md:text-6xl lg:text-7xl">
-          Got a project that needs
+          {t.contact.headline}
           <br />
-          <GradientText>someone who ships?</GradientText>
+          <GradientText>{t.contact.headlineAccent}</GradientText>
         </p>
         <p className="mx-auto mb-8 max-w-lg font-mono text-sm text-muted-foreground">
-          Legacy migration, headless commerce, ERP modules, or LLM integrations - if it needs
-          someone who owns the stack end to end, let's talk.
+          {t.contact.blurb}
         </p>
 
         <Link
@@ -68,7 +69,7 @@ const ContactSection = () => {
           className="mb-10 inline-block font-mono text-sm uppercase tracking-widest rounded-full bg-primary px-10 py-4 text-primary-foreground transition-all duration-300 hover:shadow-[0_0_40px_hsl(68,100%,50%,0.3)]"
           data-cursor-hover
         >
-          Start a Project →
+          {t.contact.cta}
         </Link>
 
         <div className="flex flex-wrap justify-center gap-4">

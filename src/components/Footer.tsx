@@ -1,3 +1,5 @@
+import { useLocale } from "@/i18n";
+
 const MauritiusFlag = ({ className = "" }: { className?: string }) => (
   <svg
     viewBox="0 0 24 16"
@@ -11,17 +13,22 @@ const MauritiusFlag = ({ className = "" }: { className?: string }) => (
   </svg>
 );
 
-const Footer = () => (
-  <footer className="border-t border-border/10 section-padding !py-6">
-    <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
-      <p className="font-mono text-xs text-muted-foreground">
-        © {new Date().getFullYear()} Nazeem Khodabux. Built with caffeine and questionable commit messages.
-      </p>
-      <p className="flex items-center gap-1.5 font-mono text-xs text-dim">
-        Made in <MauritiusFlag /> Mauritius
-      </p>
-    </div>
-  </footer>
-);
+const Footer = () => {
+  const { t } = useLocale();
+  const year = new Date().getFullYear();
+
+  return (
+    <footer className="border-t border-border/10 section-padding !py-6">
+      <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
+        <p className="font-mono text-xs text-muted-foreground">
+          {t.footer.copyright.replace("{year}", String(year))}
+        </p>
+        <p className="flex items-center gap-1.5 font-mono text-xs text-dim">
+          {t.footer.madeIn} <MauritiusFlag /> {t.footer.mauritius}
+        </p>
+      </div>
+    </footer>
+  );
+};
 
 export default Footer;

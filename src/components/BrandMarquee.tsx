@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useLocale } from "@/i18n";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -8,73 +9,33 @@ const logo = (file: string) => `${import.meta.env.BASE_URL}company_logos/${file}
 
 type Brand = {
   name: string;
-  role: string;
   logo: string;
   logoBg?: string;
 };
 
 const brands: Brand[] = [
-  {
-    name: "Dragon Electronics",
-    role: "Headless E-Commerce",
-    logo: logo("logo_DE_72_white.png"),
-  },
-  {
-    name: "Pam Golding Properties",
-    role: "Real Estate Portal",
-    logo: logo("PamGolding-logo_RGB_web-use.jpg"),
-  },
-  {
-    name: "Rogers Hospitality",
-    role: "Interactive Experience",
-    logo: logo("rogershospitality_logo.webp"),
-  },
-  {
-    name: "Impetus Digital",
-    role: "Agency · Technical Lead",
-    logo: logo("impetus_digital_logo.jpg"),
-  },
-  {
-    name: "Patel Optics",
-    role: "Optical Retail Platform",
-    logo: logo("pateloptics_logo.jpg"),
-  },
-  {
-    name: "DEV Groupe",
-    role: "Brand Experience",
-    logo: logo("GROUPDEV_LOGOTRANSPARENT.png"),
-  },
-  {
-    name: "Sicorax - Uniconsults",
-    role: "HR & Payroll Software",
-    logo: logo("sicorax_logo.png"),
-  },
-  {
-    name: "Harman House",
-    role: "E-Commerce",
-    logo: logo("harmanhouse_logo.png"),
-  },
-  {
-    name: "iKeys Realty",
-    role: "Real Estate Portal",
-    logo: logo("Ikeys-300x300.webp"),
-  },
-  {
-    name: "Blue Safari",
-    role: "Brand Experience",
-    logo: logo("BS-logo.svg"),
-  },
+  { name: "Dragon Electronics", logo: logo("logo_DE_72_white.png") },
+  { name: "Pam Golding Properties", logo: logo("PamGolding-logo_RGB_web-use.jpg") },
+  { name: "Rogers Hospitality", logo: logo("rogershospitality_logo.webp") },
+  { name: "Impetus Digital", logo: logo("impetus_digital_logo.jpg") },
+  { name: "Patel Optics", logo: logo("pateloptics_logo.jpg") },
+  { name: "DEV Groupe", logo: logo("GROUPDEV_LOGOTRANSPARENT.png") },
+  { name: "Sicorax - Uniconsults", logo: logo("sicorax_logo.png") },
+  { name: "Harman House", logo: logo("harmanhouse_logo.png") },
+  { name: "iKeys Realty", logo: logo("Ikeys-300x300.webp") },
+  { name: "Blue Safari", logo: logo("BS-logo.svg") },
 ];
 
 const marqueeBrands = [...brands, ...brands];
 
 interface BrandCardProps {
   brand: Brand;
+  role: string;
   isActive: boolean;
   isMobile: boolean;
 }
 
-const BrandCard = ({ brand, isActive, isMobile }: BrandCardProps) => {
+const BrandCard = ({ brand, role, isActive, isMobile }: BrandCardProps) => {
   const showColor = isActive || brand.logoBg != null;
 
   return (
@@ -112,7 +73,7 @@ const BrandCard = ({ brand, isActive, isMobile }: BrandCardProps) => {
           {brand.name}
         </p>
         <p className="mt-0.5 font-mono text-[9px] uppercase tracking-wider text-muted-foreground/70">
-          {brand.role}
+          {role}
         </p>
       </div>
     </div>
@@ -120,6 +81,7 @@ const BrandCard = ({ brand, isActive, isMobile }: BrandCardProps) => {
 };
 
 const BrandMarquee = () => {
+  const { t } = useLocale();
   const sectionRef = useRef<HTMLDivElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
   const viewportRef = useRef<HTMLDivElement>(null);
@@ -200,7 +162,7 @@ const BrandMarquee = () => {
           ref={headingRef}
           className="mb-4 font-mono text-xs uppercase tracking-[0.3em] text-muted-foreground"
         >
-          // brands that trusted the code
+          {t.brands.label}
         </h2>
       </div>
 
@@ -220,6 +182,7 @@ const BrandMarquee = () => {
               >
                 <BrandCard
                   brand={brand}
+                  role={t.brands.roles[brand.name] ?? ""}
                   isActive={activeId === cardId}
                   isMobile={isMobile}
                 />

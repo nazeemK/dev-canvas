@@ -7,16 +7,17 @@ import {
   Wrench,
 } from "lucide-react";
 import { OnboardingData } from "@/types/onboarding";
+import { useLocale } from "@/i18n";
 import SelectionCard from "../SelectionCard";
 
-const projectTypes = [
-  { id: "web-ecommerce", label: "Web App / E-Commerce", icon: ShoppingCart },
-  { id: "legacy", label: "Legacy Migration", icon: RefreshCw },
-  { id: "erp", label: "ERP / Business Systems", icon: Layers },
-  { id: "ai", label: "AI / LLM Integration", icon: Bot },
-  { id: "api", label: "API & Integrations", icon: Code2 },
-  { id: "support", label: "Ongoing Support", icon: Wrench },
-];
+const projectTypeIds = [
+  { id: "web-ecommerce", icon: ShoppingCart },
+  { id: "legacy", icon: RefreshCw },
+  { id: "erp", icon: Layers },
+  { id: "ai", icon: Bot },
+  { id: "api", icon: Code2 },
+  { id: "support", icon: Wrench },
+] as const;
 
 interface ProjectTypeStepProps {
   data: OnboardingData;
@@ -24,20 +25,22 @@ interface ProjectTypeStepProps {
 }
 
 const ProjectTypeStep = ({ data, onChange }: ProjectTypeStepProps) => {
+  const { t } = useLocale();
+
   const toggle = (id: string) => {
     onChange(
       data.projectTypes.includes(id)
-        ? data.projectTypes.filter((t) => t !== id)
+        ? data.projectTypes.filter((type) => type !== id)
         : [...data.projectTypes, id],
     );
   };
 
   return (
     <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6 lg:gap-4">
-      {projectTypes.map((type) => (
+      {projectTypeIds.map((type) => (
         <SelectionCard
           key={type.id}
-          label={type.label}
+          label={t.onboarding.projectTypes[type.id]}
           icon={type.icon}
           selected={data.projectTypes.includes(type.id)}
           onClick={() => toggle(type.id)}

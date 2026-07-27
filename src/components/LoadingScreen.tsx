@@ -1,19 +1,14 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
-
-const lines = [
-  "$ initializing portfolio...",
-  "$ loading 10+ years of experience...",
-  "$ compiling witty one-liners...",
-  "$ deploying awesomeness...",
-  "> ready.",
-];
+import { useLocale } from "@/i18n";
 
 interface LoadingScreenProps {
   onComplete: () => void;
 }
 
 const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
+  const { t } = useLocale();
+  const lines = t.loading.lines;
   const containerRef = useRef<HTMLDivElement>(null);
   const [displayedLines, setDisplayedLines] = useState<string[]>([]);
   const [currentLine, setCurrentLine] = useState(0);
@@ -22,7 +17,6 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
 
   useEffect(() => {
     if (currentLine >= lines.length) {
-      // All lines typed - fade out
       const timer = setTimeout(() => {
         gsap.to(containerRef.current, {
           opacity: 0,
@@ -44,7 +38,6 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
       }, speed);
       return () => clearTimeout(timer);
     } else {
-      // Line complete
       const timer = setTimeout(() => {
         setDisplayedLines((prev) => [...prev, typingText]);
         setTypingText("");
@@ -53,7 +46,7 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
       }, 150);
       return () => clearTimeout(timer);
     }
-  }, [currentLine, currentChar, typingText, onComplete]);
+  }, [currentLine, currentChar, typingText, onComplete, lines]);
 
   return (
     <div

@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import type { PageMeta } from "@/lib/seo";
 import { absoluteUrl, siteConfig } from "@/lib/seo";
+import { useLocale } from "@/i18n";
 
 function setMeta(attr: "name" | "property", key: string, content: string) {
   let el = document.querySelector<HTMLMetaElement>(`meta[${attr}="${key}"]`);
@@ -27,20 +28,23 @@ function setRobots(content: string) {
 }
 
 export function usePageMeta(meta: PageMeta) {
+  const { locale, t } = useLocale();
+  const ogLocale = locale === "fr" ? "fr_FR" : "en_US";
+
   useEffect(() => {
     document.title = meta.title;
 
     setMeta("name", "description", meta.description);
     setMeta("name", "author", siteConfig.name);
-    setMeta("name", "keywords", siteConfig.keywords.join(", "));
+    setMeta("name", "keywords", t.seo.keywords.join(", "));
 
     setMeta("property", "og:title", meta.title);
     setMeta("property", "og:description", meta.description);
     setMeta("property", "og:type", "website");
     setMeta("property", "og:site_name", siteConfig.name);
-    setMeta("property", "og:locale", siteConfig.locale);
+    setMeta("property", "og:locale", ogLocale);
     setMeta("property", "og:image", siteConfig.image);
-    setMeta("property", "og:image:alt", `${siteConfig.name} — ${siteConfig.jobTitle}`);
+    setMeta("property", "og:image:alt", `${siteConfig.name} — ${t.seo.jobTitle}`);
 
     setMeta("name", "twitter:card", "summary_large_image");
     setMeta("name", "twitter:title", meta.title);
@@ -61,7 +65,15 @@ export function usePageMeta(meta: PageMeta) {
         page_title: meta.title,
       });
     }
-  }, [meta.title, meta.description, meta.path, meta.noIndex]);
+  }, [
+    meta.title,
+    meta.description,
+    meta.path,
+    meta.noIndex,
+    ogLocale,
+    t.seo.keywords,
+    t.seo.jobTitle,
+  ]);
 }
 
 declare global {

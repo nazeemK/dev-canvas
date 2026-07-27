@@ -2,6 +2,8 @@ import { ReactNode, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import gsap from "gsap";
 import { X } from "lucide-react";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
+import { useLocale } from "@/i18n";
 
 interface OnboardingShellProps {
   stepLabel: string;
@@ -28,12 +30,13 @@ const OnboardingShell = ({
   children,
   onPrevious,
   onNext,
-  nextLabel = "Next step",
+  nextLabel,
   nextDisabled = false,
   nextLoading = false,
   error = null,
   showPrevious = true,
 }: OnboardingShellProps) => {
+  const { t } = useLocale();
   const pageRef = useRef<HTMLDivElement>(null);
   const headerRef = useRef<HTMLElement>(null);
   const titleRef = useRef<HTMLDivElement>(null);
@@ -44,20 +47,20 @@ const OnboardingShell = ({
   useEffect(() => {
     const page = pageRef.current;
     const header = headerRef.current;
-    const title = titleRef.current;
+    const titleEl = titleRef.current;
     const content = contentRef.current;
     const footer = footerRef.current;
-    if (!page || !header || !title || !content || !footer) return;
+    if (!page || !header || !titleEl || !content || !footer) return;
 
     if (!hasEnteredRef.current) {
       hasEnteredRef.current = true;
       gsap.set(page, { opacity: 0 });
-      gsap.set([header, title, content, footer], { opacity: 0, y: 28 });
+      gsap.set([header, titleEl, content, footer], { opacity: 0, y: 28 });
 
       const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
       tl.to(page, { opacity: 1, duration: 0.35 })
         .to(header, { opacity: 1, y: 0, duration: 0.7 }, "-=0.15")
-        .to(title, { opacity: 1, y: 0, duration: 0.85 }, "-=0.45")
+        .to(titleEl, { opacity: 1, y: 0, duration: 0.85 }, "-=0.45")
         .to(content, { opacity: 1, y: 0, duration: 1 }, "-=0.65")
         .to(footer, { opacity: 1, y: 0, duration: 0.7 }, "-=0.75");
 
@@ -65,7 +68,7 @@ const OnboardingShell = ({
     }
 
     gsap.fromTo(
-      [title, content],
+      [titleEl, content],
       { opacity: 0, y: 22 },
       { opacity: 1, y: 0, duration: 0.65, ease: "power3.out", stagger: 0.08 },
     );
@@ -75,17 +78,18 @@ const OnboardingShell = ({
     <div ref={pageRef} className="flex min-h-screen flex-col bg-background">
       <header
         ref={headerRef}
-        className="flex items-center justify-between px-6 py-6 md:px-12 lg:px-24"
+        className="flex items-center justify-between gap-3 px-6 py-6 md:px-12 lg:px-24"
       >
         <p className="font-mono text-xs uppercase tracking-wider text-primary">{stepLabel}</p>
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-4 sm:gap-6">
+          <LanguageSwitcher />
           <span className="font-mono text-xs text-muted-foreground">
             {stepIndex + 1} / {totalSteps}
           </span>
           <Link
             to="/"
             className="text-muted-foreground transition-colors duration-300 hover:text-foreground"
-            aria-label="Close and return home"
+            aria-label={t.onboarding.closeAria}
             data-cursor-hover
           >
             <X className="h-5 w-5" />
@@ -117,28 +121,28 @@ const OnboardingShell = ({
             </p>
           )}
           <div className="flex items-center justify-between">
-          {showPrevious && onPrevious ? (
+            {showPrevious && onPrevious ? (
+              <button
+                type="button"
+                onClick={onPrevious}
+                data-cursor-hover
+                className="font-mono text-sm text-muted-foreground transition-colors duration-300 hover:text-foreground"
+              >
+                {t.onboarding.previous}
+              </button>
+            ) : (
+              <span />
+            )}
+
             <button
               type="button"
-              onClick={onPrevious}
+              onClick={onNext}
+              disabled={nextDisabled || nextLoading}
               data-cursor-hover
-              className="font-mono text-sm text-muted-foreground transition-colors duration-300 hover:text-foreground"
+              className="font-mono text-sm uppercase tracking-widest rounded-full bg-primary px-8 py-3.5 text-primary-foreground transition-all duration-300 hover:shadow-[0_0_40px_hsl(68,100%,50%,0.3)] disabled:cursor-not-allowed disabled:opacity-40"
             >
-              Previous
+              {nextLoading ? t.onboarding.sending : nextLabel ?? t.onboarding.next}
             </button>
-          ) : (
-            <span />
-          )}
-
-          <button
-            type="button"
-            onClick={onNext}
-            disabled={nextDisabled || nextLoading}
-            data-cursor-hover
-            className="font-mono text-sm uppercase tracking-widest rounded-full bg-primary px-8 py-3.5 text-primary-foreground transition-all duration-300 hover:shadow-[0_0_40px_hsl(68,100%,50%,0.3)] disabled:cursor-not-allowed disabled:opacity-40"
-          >
-            {nextLoading ? "Sending…" : nextLabel}
-          </button>
           </div>
         </div>
       </footer>

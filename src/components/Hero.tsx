@@ -3,12 +3,14 @@ import { Link } from "react-router-dom";
 import gsap from "gsap";
 import ThreeScene from "./ThreeScene";
 import GradientText from "./GradientText";
+import { useLocale } from "@/i18n";
 
 interface HeroProps {
   ready?: boolean;
 }
 
 const Hero = ({ ready = true }: HeroProps) => {
+  const { t } = useLocale();
   const containerRef = useRef<HTMLDivElement>(null);
   const nazeemRef = useRef<HTMLSpanElement>(null);
   const khodabuxRef = useRef<HTMLSpanElement>(null);
@@ -55,9 +57,9 @@ const Hero = ({ ready = true }: HeroProps) => {
           ref={badgeRef}
           className="inline-flex flex-col sm:flex-row sm:items-center sm:gap-x-2 font-mono text-xs uppercase tracking-[0.3em] text-primary border border-primary/30 px-4 py-2 rounded-full mb-8 glow-box"
         >
-          <span>Senior Full-Stack Developer</span>
+          <span>{t.hero.badgeRole}</span>
           <span className="hidden sm:inline"> · </span>
-          <span>10+ Years</span>
+          <span>{t.hero.badgeYears}</span>
         </span>
 
         <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-bold leading-[0.9] mb-8">
@@ -68,8 +70,7 @@ const Hero = ({ ready = true }: HeroProps) => {
         </h1>
 
         <p ref={taglineRef} className="font-mono text-muted-foreground text-sm md:text-base max-w-xl mx-auto mb-12 leading-relaxed">
-          I architect production systems across e-commerce, ERP, and legacy rescues - now with
-          LLM integrations and agentic workflows in the mix. Based in Curepipe, shipped globally.
+          {t.hero.tagline}
         </p>
 
         <div ref={ctaRef} className="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -78,14 +79,14 @@ const Hero = ({ ready = true }: HeroProps) => {
             className="group font-mono text-sm uppercase tracking-widest bg-primary text-primary-foreground px-8 py-4 rounded-full hover:shadow-[0_0_40px_hsl(68,100%,50%,0.3)] transition-all duration-300"
             data-cursor-hover
           >
-            View Work →
+            {t.hero.viewWork}
           </a>
           <Link
             to="/start-project"
             className="font-mono text-sm uppercase tracking-widest border border-foreground/20 text-foreground px-8 py-4 rounded-full hover:border-primary/50 transition-all duration-300"
             data-cursor-hover
           >
-            Let's Talk
+            {t.hero.letsTalk}
           </Link>
         </div>
       </div>

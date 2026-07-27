@@ -1,48 +1,21 @@
+import { en } from "@/i18n/en";
 import type { OnboardingData } from "@/types/onboarding";
 
-const PROJECT_TYPE_LABELS: Record<string, string> = {
-  "web-ecommerce": "Web App / E-Commerce",
-  legacy: "Legacy Migration",
-  erp: "ERP / Business Systems",
-  ai: "AI / LLM Integration",
-  api: "API & Integrations",
-  support: "Ongoing Support",
-};
-
-const TEAM_SIZE_LABELS: Record<string, string> = {
-  solo: "Solo / Freelancer",
-  "2-10": "2–10 people",
-  "11-50": "11–50 people",
-  "50+": "50+ people",
-};
-
-const ORG_TYPE_LABELS: Record<string, string> = {
-  independent: "Independent / Solo venture",
-  startup: "Startup",
-  sme: "SME",
-  enterprise: "Enterprise",
-  agency: "Agency",
-};
-
-const BUDGET_LABELS: Record<string, string> = {
-  "under-50k": "Under Rs 50k",
-  "50k-150k": "Rs 50k – 150k",
-  "150k-500k": "Rs 150k – 500k",
-  "500k+": "Rs 500k+",
-  unsure: "Not sure yet",
-};
-
-const TIMELINE_LABELS: Record<string, string> = {
-  asap: "ASAP",
-  "1-3": "1–3 months",
-  "3-6": "3–6 months",
-  "6+": "6+ months",
-  flexible: "Flexible",
-};
+/** Email notification labels stay English so inbox stays consistent. */
+const PROJECT_TYPE_LABELS = en.onboarding.projectTypes;
+const TEAM_SIZE_LABELS = en.onboarding.teamSizes;
+const ORG_TYPE_LABELS = en.onboarding.orgTypes;
+const BUDGET_LABELS = en.onboarding.budgets;
+const TIMELINE_LABELS = en.onboarding.timelines;
 
 function label(map: Record<string, string>, id: string) {
   return map[id] ?? id;
 }
+
+export type InquiryErrorMessages = {
+  formNotSetup: string;
+  submitFailed: string;
+};
 
 let cachedAccessKey: string | null | undefined;
 
@@ -73,13 +46,17 @@ async function getAccessKey(): Promise<string | null> {
   return null;
 }
 
-export async function submitProjectInquiry(data: OnboardingData) {
+export async function submitProjectInquiry(
+  data: OnboardingData,
+  errors: InquiryErrorMessages = {
+    formNotSetup: en.onboarding.formNotSetup,
+    submitFailed: en.onboarding.submitFailedWhatsApp,
+  },
+) {
   const accessKey = await getAccessKey();
 
   if (!accessKey) {
-    throw new Error(
-      "Form is not set up yet. Please contact me on WhatsApp or LinkedIn in the meantime.",
-    );
+    throw new Error(errors.formNotSetup);
   }
 
   const response = await fetch("https://api.web3forms.com/submit", {
@@ -108,6 +85,6 @@ export async function submitProjectInquiry(data: OnboardingData) {
   const result = (await response.json()) as { success: boolean; message?: string };
 
   if (!response.ok || !result.success) {
-    throw new Error(result.message ?? "Failed to send inquiry. Please try again or contact me on WhatsApp.");
+    throw new Error(result.message ?? errors.submitFailed);
   }
 }

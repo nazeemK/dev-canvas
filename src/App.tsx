@@ -4,6 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import CustomCursor from "@/components/CustomCursor";
+import { LocaleProvider } from "@/i18n";
 import Index from "./pages/Index";
 import StartProject from "./pages/StartProject";
 import NotFound from "./pages/NotFound";
@@ -12,19 +13,21 @@ const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter basename={import.meta.env.BASE_URL}>
-        <CustomCursor />
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/start-project" element={<StartProject />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
+    <LocaleProvider>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter basename={import.meta.env.BASE_URL}>
+          <CustomCursor />
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/start-project" element={<StartProject />} />
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </TooltipProvider>
+    </LocaleProvider>
   </QueryClientProvider>
 );
 

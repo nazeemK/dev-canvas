@@ -13,11 +13,16 @@ import Footer from "@/components/Footer";
 import BackToTop from "@/components/BackToTop";
 import SeoSchema from "@/components/SeoSchema";
 import { usePageMeta } from "@/hooks/usePageMeta";
-import { pageMeta } from "@/lib/seo";
+import { useLocale } from "@/i18n";
 
 const Index = () => {
+  const { t } = useLocale();
   const [loading, setLoading] = useState(true);
-  usePageMeta(pageMeta.home);
+  usePageMeta({
+    title: t.seo.home.title,
+    description: t.seo.home.description,
+    path: "/",
+  });
 
   return (
     <>

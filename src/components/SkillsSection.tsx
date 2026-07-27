@@ -1,40 +1,9 @@
 import { useReveal } from "@/hooks/useReveal";
 import GradientText from "./GradientText";
-
-const skillCategories = [
-  {
-    title: "Frontend",
-    skills: [
-      "Vue.js / Nuxt",
-      "React",
-      "Angular (1 & 16+)",
-      "Tailwind / Bootstrap",
-      "GSAP / Three.js",
-    ],
-  },
-  {
-    title: "Backend",
-    skills: [
-      "Node.js / Express",
-      "PHP / WordPress",
-      "Python / FastAPI",
-      "GraphQL / REST",
-      "MySQL / MongoDB / Redis",
-    ],
-  },
-  {
-    title: "DevOps & AI",
-    skills: [
-      "Docker / CI/CD",
-      "AWS / DigitalOcean / Cloudflare",
-      "Claude / OpenAI APIs",
-      "MCP / A2A / Prompt Engineering",
-      "Git / Playwright",
-    ],
-  },
-];
+import { useLocale } from "@/i18n";
 
 const SkillsSection = () => {
+  const { t } = useLocale();
   const titleRef = useReveal();
   const cardsRef = useReveal();
 
@@ -42,18 +11,18 @@ const SkillsSection = () => {
     <section className="section-padding" id="skills">
       <div ref={titleRef} className="reveal mb-16 md:mb-24">
         <h2 className="font-mono text-xs uppercase tracking-[0.3em] text-muted-foreground mb-4">
-          // tech stack
+          {t.skills.label}
         </h2>
         <p className="text-3xl md:text-5xl font-bold max-w-2xl">
-          Tools I use to turn <GradientText>coffee into code</GradientText>
+          {t.skills.headline} <GradientText>{t.skills.headlineAccent}</GradientText>
           <span className="text-muted-foreground text-lg block mt-2 font-normal font-mono">
-            (and increasingly, prompts into production)
+            {t.skills.headlineSub}
           </span>
         </p>
       </div>
 
       <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-        {skillCategories.map((cat, ci) => (
+        {t.skills.categories.map((cat, ci) => (
           <div
             key={cat.title}
             className="reveal-item group rounded-2xl border border-border/20 bg-surface-1 p-6 md:p-8 transition-all duration-500 hover:border-primary/30 hover:glow-box"
